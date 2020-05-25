@@ -1,1 +1,1 @@
-# varadinum-instrictional
+# varadinum-instructional
