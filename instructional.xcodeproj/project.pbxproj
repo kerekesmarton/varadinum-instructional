@@ -136,8 +136,8 @@
 			children = (
 				109F11E9247879AC006FA499 /* AppDelegate.swift */,
 				109F11EB247879AC006FA499 /* SceneDelegate.swift */,
-				109F122024787AF2006FA499 /* App Config */,
 				109F11F0247879AC006FA499 /* ContentView.swift */,
+				109F122024787AF2006FA499 /* App Config */,
 				109F11F2247879AD006FA499 /* Assets.xcassets */,
 				109F11F7247879AD006FA499 /* LaunchScreen.storyboard */,
 				109F11FA247879AD006FA499 /* Info.plist */,
@@ -178,8 +178,8 @@
 		109F122024787AF2006FA499 /* App Config */ = {
 			isa = PBXGroup;
 			children = (
-				109F122524793B33006FA499 /* AppTasks.swift */,
-				109F1233247ACC22006FA499 /* Tasks */,
+				109F122B247AC2DC006FA499 /* CoreServiceLocator.swift */,
+				109F1234247BC338006FA499 /* AppTasks */,
 			);
 			path = "App Config";
 			sourceTree = "<group>";
@@ -188,12 +188,20 @@
 			isa = PBXGroup;
 			children = (
 				109F1231247ACB6A006FA499 /* BuildTask.swift */,
-				109F122B247AC2DC006FA499 /* CoreServiceLocator.swift */,
 				109F122324793308006FA499 /* CoreDataTask.swift */,
 				109F122124787B05006FA499 /* FirebaseTask.swift */,
 				109F122724793BE8006FA499 /* PushNotificationTask.swift */,
 			);
 			path = Tasks;
+			sourceTree = "<group>";
+		};
+		109F1234247BC338006FA499 /* AppTasks */ = {
+			isa = PBXGroup;
+			children = (
+				109F122524793B33006FA499 /* AppTasks.swift */,
+				109F1233247ACC22006FA499 /* Tasks */,
+			);
+			path = AppTasks;
 			sourceTree = "<group>";
 		};
 		2BCDA58308E605E91C655115 /* Pods */ = {
