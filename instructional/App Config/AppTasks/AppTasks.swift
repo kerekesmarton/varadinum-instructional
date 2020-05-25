@@ -5,9 +5,9 @@ protocol AppTaskable: UIWindowSceneDelegate, UIApplicationDelegate {}
 struct AppTasks {
     
     let buildTask = BuildTask()
-    @Inject("firebase") var firebaseTask: FirebaseTask
-    @Inject("coredata") var coreDataTask: CoreDataTask
-    @Inject("pushNotification") var pushNotificationTask: PushNotificationTask
+    @Inject var firebaseTask: FirebaseTask
+    @Inject var coreDataTask: CoreDataTask
+    @Inject var pushNotificationTask: PushNotificationTask
     
     private var allTasks: [AppTaskable] {
         return [buildTask,

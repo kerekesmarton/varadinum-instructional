@@ -2,9 +2,9 @@ import UIKit
 
 class BuildTask: NSObject, AppTaskable {
     private let dependencies = CoreServiceLocator {
-        Register("firebase") { FirebaseTask() }
-        Register("coredata") { CoreDataTask() }
-        Register("pushNotification") { PushNotificationTask() }
+        Register { FirebaseTask() }
+        Register { CoreDataTask() }
+        Register { PushNotificationTask() }
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

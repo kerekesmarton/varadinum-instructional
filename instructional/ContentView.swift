@@ -3,33 +3,27 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selection = 0
- 
+    
+    var profile = Profile(id: UUID().uuidString, name: "Timmy")
+    
     var body: some View {
         TabView(selection: $selection) {
-            Text("First View")
-                .font(.title)
+            ArtistsView()
                 .tabItem {
                     VStack {
-                        Image("first")
-                        Text("First")
+                        Image(systemName: "person.3.fill")
+                        Text("Artists")
                     }
-                }
-                .tag(0)
-            Text("Second View")
-                .font(.title)
+            }
+            .tag(0)
+            ProfileView(profile: self.profile)
                 .tabItem {
                     VStack {
-                        Image("second")
-                        Text("Second")
+                        Image(systemName: "person.fill")
+                        Text("Profile")
                     }
-                }
-                .tag(1)
+            }
+            .tag(1)
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
