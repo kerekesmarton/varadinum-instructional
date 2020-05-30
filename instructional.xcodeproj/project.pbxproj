@@ -16,6 +16,9 @@
 		109E45F924827DDA0093B535 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45F824827DDA0093B535 /* API.swift */; };
 		109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FA24827DE60093B535 /* GraphNetwork.swift */; };
 		109E45FD24827F060093B535 /* WorkshopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FC24827F060093B535 /* WorkshopData.swift */; };
+		109E45FF24829A170093B535 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FE24829A170093B535 /* ActivityIndicator.swift */; };
+		109E460124829B310093B535 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E460024829B310093B535 /* AnyView.swift */; };
+		109E460324829DD00093B535 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E460224829DD00093B535 /* ServiceError.swift */; };
 		109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11E9247879AC006FA499 /* AppDelegate.swift */; };
 		109F11EC247879AC006FA499 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11EB247879AC006FA499 /* SceneDelegate.swift */; };
 		109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 109F11ED247879AC006FA499 /* instructional.xcdatamodeld */; };
@@ -65,6 +68,9 @@
 		109E45F824827DDA0093B535 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		109E45FA24827DE60093B535 /* GraphNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetwork.swift; sourceTree = "<group>"; };
 		109E45FC24827F060093B535 /* WorkshopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopData.swift; sourceTree = "<group>"; };
+		109E45FE24829A170093B535 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		109E460024829B310093B535 /* AnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyView.swift; sourceTree = "<group>"; };
+		109E460224829DD00093B535 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		109F11E6247879AC006FA499 /* instructional.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instructional.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		109F11E9247879AC006FA499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		109F11EB247879AC006FA499 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				1030CB58247C52A5001CADCD /* AsyncImageView.swift */,
+				109E45FE24829A170093B535 /* ActivityIndicator.swift */,
+				109E460024829B310093B535 /* AnyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				109E45F824827DDA0093B535 /* API.swift */,
+				109E460224829DD00093B535 /* ServiceError.swift */,
 				109E45FA24827DE60093B535 /* GraphNetwork.swift */,
 				109E45F024827C270093B535 /* schema.json */,
 				109E45EE24827C270093B535 /* GetUsers.graphql */,
@@ -551,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				109E460324829DD00093B535 /* ServiceError.swift in Sources */,
 				1030CB59247C52A5001CADCD /* AsyncImageView.swift in Sources */,
 				109F122424793308006FA499 /* CoreDataTask.swift in Sources */,
 				109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */,
@@ -563,10 +573,12 @@
 				109F11F1247879AC006FA499 /* ContentView.swift in Sources */,
 				109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */,
 				109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */,
+				109E460124829B310093B535 /* AnyView.swift in Sources */,
 				1030CB56247C5109001CADCD /* WorkshopsView.swift in Sources */,
 				109F1232247ACB6A006FA499 /* BuildTask.swift in Sources */,
 				109F122624793B33006FA499 /* AppTasks.swift in Sources */,
 				109F122824793BE8006FA499 /* PushNotificationTask.swift in Sources */,
+				109E45FF24829A170093B535 /* ActivityIndicator.swift in Sources */,
 				1030CB53247C4FBB001CADCD /* ProfileTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

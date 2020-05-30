@@ -1,7 +1,5 @@
 import SwiftUI
 
-
-
 struct WorkshopListItem: View {
     
     var workshop: Workshop
@@ -25,8 +23,20 @@ struct WorkshopsListView<T: WorkshopObservable>: View {
     }
     
     var body: some View {
-        List(workshopData.workshops) {
-            WorkshopListItem(workshop: $0)
+        switch workshopData.viewModel {
+        case .result(let workshops):
+            return List(workshops) {
+                WorkshopListItem(workshop: $0)
+            }.anyView
+        case .error(let error):
+            return VStack {
+                Text(error.localizedDescription)
+            }.anyView
+        case .loading:
+            return VStack {
+                Text("Loading")
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }.anyView
         }
     }
 }
@@ -34,10 +44,9 @@ struct WorkshopsListView<T: WorkshopObservable>: View {
 struct WorkshopsView_Previews: PreviewProvider {
     
     class MockWorkshopData: WorkshopObservable, ObservableObject {
-        @Published var workshops = [Workshop]()
-        
-        init(workshops: [Workshop]) {
-            self.workshops = workshops
+        var viewModel: WorkshopViewModel
+        init(workshops: WorkshopViewModel) {
+            self.viewModel = workshops
         }
     }
     
@@ -54,6 +63,6 @@ struct WorkshopsView_Previews: PreviewProvider {
                           title: "Machito")
         
         
-        return WorkshopsListView(workshopData: MockWorkshopData(workshops: [ws]))
+        return WorkshopsListView(workshopData: MockWorkshopData(workshops: .result([ws])))
     }
 }

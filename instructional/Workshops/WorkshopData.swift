@@ -8,11 +8,17 @@ struct Workshop: Identifiable {
 }
 
 protocol WorkshopObservable: ObservableObject {
-    var workshops: [Workshop] { get }
+    var viewModel: WorkshopViewModel { get }
+}
+
+enum WorkshopViewModel {
+    case result([Workshop])
+    case loading
+    case error(ServiceError)
 }
 
 class WorkshopData: ObservableObject, WorkshopObservable {
-    @Published var workshops = [Workshop]()
+    @Published var viewModel = WorkshopViewModel.loading
     @Inject var api: Network
     
     init() {
@@ -20,13 +26,14 @@ class WorkshopData: ObservableObject, WorkshopObservable {
     }
     
     func load() {
-        api.apollo.fetch(query: GetWorkshopsQuery()) { [weak self] result in
+        api.fetch(query: GetWorkshopsQuery()) { [weak self] result in
           switch result {
           case .success(let graphQLResult):
             guard let data = graphQLResult.data else { return }
-            self?.workshops = data.workshops.compactMap { $0?.generateEntity() }
+            let results = data.workshops.compactMap { $0?.generateEntity() }
+            self?.viewModel = .result(results)
           case .failure(let error):
-            print("Failure! Error: \(error)")
+            self?.viewModel = .error(error)
           }
         }
     }
