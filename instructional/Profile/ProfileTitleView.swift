@@ -36,7 +36,7 @@ struct ProfileTitleView: View {
                     .font(.subheadline)
                     .foregroundColor(.blue)
                     .lineLimit(1)
-            }//.padding(.leading).padding(.trailing)
+            }
             
             VStack{
                 Text("9999")
@@ -48,8 +48,7 @@ struct ProfileTitleView: View {
                     .font(.subheadline)
                     .foregroundColor(.blue)
                     .lineLimit(1)
-            }//.padding(.leading).padding(.trailing)
-            
+            }
         }
         .frame(height: 100)
     }

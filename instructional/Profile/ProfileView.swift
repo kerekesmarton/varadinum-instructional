@@ -23,7 +23,11 @@ struct ProfileView: View {
                     
                     Divider()
                     
+                    Spacer()
+                    
                     WorkshopsListView(workshopData: WorkshopData())
+                    
+                    Spacer()
                 }
             }.navigationBarTitle(self.profile.name)
         }

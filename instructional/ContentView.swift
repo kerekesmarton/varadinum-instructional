@@ -8,7 +8,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            ArtistsView()
+            ArtistsView(artistsData: ArtistsData())
                 .tabItem {
                     VStack {
                         Image(systemName: "person.3.fill")

@@ -55,7 +55,7 @@ struct WorkshopsView_Previews: PreviewProvider {
         let url = URL(string: "https://en.wikipedia.org/wiki/File:Machito_and_his_sister_Graciella_Grillo.jpg")!
         
         let profile = Profile(id: UUID().uuidString,
-        name: "Matt")
+                            name: "Matt")
         
         let ws = Workshop(id: UUID().uuidString,
                           artist: profile,
