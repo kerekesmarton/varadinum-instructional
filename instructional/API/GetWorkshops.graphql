@@ -1,0 +1,11 @@
+query GetWorkshops{
+  workshops{
+    id
+    title
+    preview
+    author{
+      id
+      name
+    }
+  }
+}

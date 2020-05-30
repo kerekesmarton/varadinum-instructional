@@ -13,6 +13,9 @@
 		1030CB53247C4FBB001CADCD /* ProfileTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB52247C4FBB001CADCD /* ProfileTitleView.swift */; };
 		1030CB56247C5109001CADCD /* WorkshopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB55247C5109001CADCD /* WorkshopsView.swift */; };
 		1030CB59247C52A5001CADCD /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB58247C52A5001CADCD /* AsyncImageView.swift */; };
+		109E45F924827DDA0093B535 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45F824827DDA0093B535 /* API.swift */; };
+		109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FA24827DE60093B535 /* GraphNetwork.swift */; };
+		109E45FD24827F060093B535 /* WorkshopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FC24827F060093B535 /* WorkshopData.swift */; };
 		109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11E9247879AC006FA499 /* AppDelegate.swift */; };
 		109F11EC247879AC006FA499 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11EB247879AC006FA499 /* SceneDelegate.swift */; };
 		109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 109F11ED247879AC006FA499 /* instructional.xcdatamodeld */; };
@@ -22,8 +25,6 @@
 		109F11F9247879AD006FA499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 109F11F7247879AD006FA499 /* LaunchScreen.storyboard */; };
 		109F1204247879AE006FA499 /* instructionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F1203247879AE006FA499 /* instructionalTests.swift */; };
 		109F120F247879AE006FA499 /* instructionalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F120E247879AE006FA499 /* instructionalUITests.swift */; };
-		109F121D24787A1B006FA499 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 109F121C24787A1B006FA499 /* GoogleService-Info.plist */; };
-		109F122224787B05006FA499 /* FirebaseTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122124787B05006FA499 /* FirebaseTask.swift */; };
 		109F122424793308006FA499 /* CoreDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122324793308006FA499 /* CoreDataTask.swift */; };
 		109F122624793B33006FA499 /* AppTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122524793B33006FA499 /* AppTasks.swift */; };
 		109F122824793BE8006FA499 /* PushNotificationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122724793BE8006FA499 /* PushNotificationTask.swift */; };
@@ -58,6 +59,12 @@
 		1030CB52247C4FBB001CADCD /* ProfileTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTitleView.swift; sourceTree = "<group>"; };
 		1030CB55247C5109001CADCD /* WorkshopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsView.swift; sourceTree = "<group>"; };
 		1030CB58247C52A5001CADCD /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		109E45EE24827C270093B535 /* GetUsers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetUsers.graphql; sourceTree = "<group>"; };
+		109E45F024827C270093B535 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		109E45F424827C610093B535 /* GetWorkshops.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = GetWorkshops.graphql; sourceTree = "<group>"; };
+		109E45F824827DDA0093B535 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		109E45FA24827DE60093B535 /* GraphNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetwork.swift; sourceTree = "<group>"; };
+		109E45FC24827F060093B535 /* WorkshopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopData.swift; sourceTree = "<group>"; };
 		109F11E6247879AC006FA499 /* instructional.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instructional.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		109F11E9247879AC006FA499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		109F11EB247879AC006FA499 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,8 +80,6 @@
 		109F120A247879AE006FA499 /* instructionalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = instructionalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		109F120E247879AE006FA499 /* instructionalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instructionalUITests.swift; sourceTree = "<group>"; };
 		109F1210247879AE006FA499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		109F121C24787A1B006FA499 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		109F122124787B05006FA499 /* FirebaseTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTask.swift; sourceTree = "<group>"; };
 		109F122324793308006FA499 /* CoreDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTask.swift; sourceTree = "<group>"; };
 		109F122524793B33006FA499 /* AppTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTasks.swift; sourceTree = "<group>"; };
 		109F122724793BE8006FA499 /* PushNotificationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationTask.swift; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				1030CB55247C5109001CADCD /* WorkshopsView.swift */,
+				109E45FC24827F060093B535 /* WorkshopData.swift */,
 			);
 			path = Workshops;
 			sourceTree = "<group>";
@@ -150,6 +156,18 @@
 				1030CB58247C52A5001CADCD /* AsyncImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		109E45ED24827C270093B535 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				109E45F824827DDA0093B535 /* API.swift */,
+				109E45FA24827DE60093B535 /* GraphNetwork.swift */,
+				109E45F024827C270093B535 /* schema.json */,
+				109E45EE24827C270093B535 /* GetUsers.graphql */,
+				109E45F424827C610093B535 /* GetWorkshops.graphql */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		109F11DD247879AC006FA499 = {
@@ -185,10 +203,10 @@
 				1030CB54247C5083001CADCD /* Artists */,
 				1030CB51247C4EEE001CADCD /* Profile */,
 				109F122024787AF2006FA499 /* App Config */,
+				109E45ED24827C270093B535 /* API */,
 				109F11F2247879AD006FA499 /* Assets.xcassets */,
 				109F11F7247879AD006FA499 /* LaunchScreen.storyboard */,
 				109F11FA247879AD006FA499 /* Info.plist */,
-				109F121C24787A1B006FA499 /* GoogleService-Info.plist */,
 				109F11ED247879AC006FA499 /* instructional.xcdatamodeld */,
 				109F11F4247879AD006FA499 /* Preview Content */,
 			);
@@ -236,7 +254,6 @@
 			children = (
 				109F1231247ACB6A006FA499 /* BuildTask.swift */,
 				109F122324793308006FA499 /* CoreDataTask.swift */,
-				109F122124787B05006FA499 /* FirebaseTask.swift */,
 				109F122724793BE8006FA499 /* PushNotificationTask.swift */,
 			);
 			path = Tasks;
@@ -282,10 +299,11 @@
 			buildConfigurationList = 109F1213247879AE006FA499 /* Build configuration list for PBXNativeTarget "instructional" */;
 			buildPhases = (
 				C5EA4FDA7AB916BC1E618CB3 /* [CP] Check Pods Manifest.lock */,
+				109E45E12482773E0093B535 /* API Codegen */,
 				109F11E2247879AC006FA499 /* Sources */,
 				109F11E3247879AC006FA499 /* Frameworks */,
 				109F11E4247879AC006FA499 /* Resources */,
-				1BD8AEDCFC7336FEBDA329AB /* [CP] Embed Pods Frameworks */,
+				A3615AC80F4F8E642847500F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -323,7 +341,7 @@
 				109F1206247879AE006FA499 /* Sources */,
 				109F1207247879AE006FA499 /* Frameworks */,
 				109F1208247879AE006FA499 /* Resources */,
-				F29BA8F5867162130B4D7424 /* [CP] Embed Pods Frameworks */,
+				5249B68EB09DD8F394EC69BE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -384,7 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				109F11F9247879AD006FA499 /* LaunchScreen.storyboard in Resources */,
-				109F121D24787A1B006FA499 /* GoogleService-Info.plist in Resources */,
 				109F11F6247879AD006FA499 /* Preview Assets.xcassets in Resources */,
 				109F11F3247879AD006FA499 /* Assets.xcassets in Resources */,
 			);
@@ -429,21 +446,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1BD8AEDCFC7336FEBDA329AB /* [CP] Embed Pods Frameworks */ = {
+		109E45E12482773E0093B535 /* API Codegen */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"$(SRCROOT)/${TARGET_NAME}/**/*.graphql",
+			);
+			name = "API Codegen";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(SRCROOT)/${TARGET_NAME}/API/API.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks.sh\"\n";
+			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\npwd\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"API/schema.json\" API/API.swift\n";
+		};
+		5249B68EB09DD8F394EC69BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55B69FAE28BC26F75AB4B2AE /* [CP] Check Pods Manifest.lock */ = {
@@ -468,6 +505,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A3615AC80F4F8E642847500F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C5EA4FDA7AB916BC1E618CB3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,23 +544,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F29BA8F5867162130B4D7424 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -518,12 +555,14 @@
 				109F122424793308006FA499 /* CoreDataTask.swift in Sources */,
 				109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */,
 				109F11EC247879AC006FA499 /* SceneDelegate.swift in Sources */,
+				109E45FD24827F060093B535 /* WorkshopData.swift in Sources */,
+				109E45F924827DDA0093B535 /* API.swift in Sources */,
 				109F122C247AC2DC006FA499 /* CoreServiceLocator.swift in Sources */,
 				1030CB50247C3CC9001CADCD /* ProfileView.swift in Sources */,
 				1030CB4E247C320A001CADCD /* ArtistsView.swift in Sources */,
 				109F11F1247879AC006FA499 /* ContentView.swift in Sources */,
+				109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */,
 				109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */,
-				109F122224787B05006FA499 /* FirebaseTask.swift in Sources */,
 				1030CB56247C5109001CADCD /* WorkshopsView.swift in Sources */,
 				109F1232247ACB6A006FA499 /* BuildTask.swift in Sources */,
 				109F122624793B33006FA499 /* AppTasks.swift in Sources */,

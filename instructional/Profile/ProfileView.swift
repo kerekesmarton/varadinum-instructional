@@ -9,17 +9,6 @@ struct ProfileView: View {
     
     var profile: Profile
     
-    func workshops() -> [Workshop] {
-        return [Workshop(id: UUID().uuidString,
-                 artist: self.profile,
-                 image: URL(string: "https://unsplash.com/photos/POd35V_uE4k")!,
-                 title: "Ballet"),
-        Workshop(id: UUID().uuidString,
-                 artist: self.profile,
-                 image: URL(string: "https://unsplash.com/photos/Etxf65FaTrs")!,
-                 title: "Street")]
-    }
-    
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -34,7 +23,7 @@ struct ProfileView: View {
                     
                     Divider()
                     
-                    WorkshopsListView(workshops: self.workshops())
+                    WorkshopsListView(workshopData: WorkshopData())
                 }
             }.navigationBarTitle(self.profile.name)
         }

@@ -1,11 +1,6 @@
 import SwiftUI
 
-struct Workshop: Identifiable {
-    var id: String
-    var artist: Profile
-    var image: URL
-    var title: String
-}
+
 
 struct WorkshopListItem: View {
     
@@ -21,12 +16,44 @@ struct WorkshopListItem: View {
     }
 }
 
-struct WorkshopsListView: View {
+struct WorkshopsListView<T: WorkshopObservable>: View {
     
-    var workshops: [Workshop]
+    @ObservedObject private var workshopData: T
+    
+    init(workshopData: T) {
+        self.workshopData = workshopData
+    }
+    
     var body: some View {
-        List(workshops) {
+        List(workshopData.workshops) {
             WorkshopListItem(workshop: $0)
         }
+    }
+}
+
+struct WorkshopsView_Previews: PreviewProvider {
+    
+    class MockWorkshopData: WorkshopObservable, ObservableObject {
+        @Published var workshops = [Workshop]()
+        
+        init(workshops: [Workshop]) {
+            self.workshops = workshops
+        }
+    }
+    
+    static var previews: some View {
+        
+        let url = URL(string: "https://en.wikipedia.org/wiki/File:Machito_and_his_sister_Graciella_Grillo.jpg")!
+        
+        let profile = Profile(id: UUID().uuidString,
+        name: "Matt")
+        
+        let ws = Workshop(id: UUID().uuidString,
+                          artist: profile,
+                          image: url,
+                          title: "Machito")
+        
+        
+        return WorkshopsListView(workshopData: MockWorkshopData(workshops: [ws]))
     }
 }
