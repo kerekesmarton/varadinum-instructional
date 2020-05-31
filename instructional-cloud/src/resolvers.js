@@ -1,6 +1,6 @@
 module.exports = {
   Query: {
-    me: (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser()
+    me: (_, __, { dataSources }) => dataSources.userAPI.findOrCreateUser(),
     sensitiveInformation: () => 'Sensitive info',
   },
   

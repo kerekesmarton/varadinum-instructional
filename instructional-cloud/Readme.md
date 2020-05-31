@@ -3,18 +3,22 @@
 
 ## Install and start local host
 
+
     https://www.apollographql.com/docs/tutorial/schema/
 
-1. start local service:
+start local service:
         
+        npm install apollo-server graphql
+        
+If something is failing, try 
+
+        npm  audit  fix
+
         npm start
 
-2. deploy service:
+when the service  is running, in a different  tab deploy service:
 
         npx apollo service:push --graph=varadinum-instructional --key=user:gh.kerekesmarton:DtDc02arIhiV3PbSlzqxQw --endpoint=http://localhost:4000
-
-
-
 
 
 ## Schema Download
