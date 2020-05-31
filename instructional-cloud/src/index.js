@@ -1,18 +1,28 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server');
+const { mergeTypeDefs, mergeResolvers } = require('@graphql-toolkit/schema-merging');
+const { AccountsModule } = require('@accounts/graphql-api');
+
 const typeDefs = require('./schema');
-const { createStore } = require('./utils');
+const { creteAccountsServer } = require('./utils');
 const { resolvers } = require('./resolvers');
 
-const UserAPI = require('./datasources/user');
+const accountsServer = creteAccountsServer()
 
-const store = createStore();
+// We generate the accounts-js GraphQL module
+const accountsGraphQL = AccountsModule.forRoot({ accountsServer });
+
+// A new schema is created combining our schema and the accounts-js schema
+const schema = makeExecutableSchema({
+  typeDefs: mergeTypeDefs([typeDefs, accountsGraphQL.typeDefs]),
+  resolvers: mergeResolvers([accountsGraphQL.resolvers, resolvers]),
+  schemaDirectives: {
+    ...accountsGraphQL.schemaDirectives,
+  },
+});
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources: () => ({
-      userAPI: new UserAPI({ store })
-    }),
+    schema,
+    context: accountsGraphQL.context,
     engine: {
       apiKey: "service:varadinum-instructional:dpSB72RWv9JpoKNoND1naQ",
     }
