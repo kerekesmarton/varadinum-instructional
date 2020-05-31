@@ -50,20 +50,9 @@ module.exports.createStore = () => {
     createdAt: SQL.DATE,
     updatedAt: SQL.DATE,
     email: SQL.STRING,
+    passwrod: SQL.STRING,
     token: SQL.STRING,
   });
 
-  const trips = db.define('trip', {
-    id: {
-      type: SQL.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    createdAt: SQL.DATE,
-    updatedAt: SQL.DATE,
-    launchId: SQL.INTEGER,
-    userId: SQL.INTEGER,
-  });
-
-  return { users, trips };
+  return { users };
 };

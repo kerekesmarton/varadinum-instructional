@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,10 +35,6 @@
 		109F122C247AC2DC006FA499 /* CoreServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122B247AC2DC006FA499 /* CoreServiceLocator.swift */; };
 		109F122E247AC3DB006FA499 /* DependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122D247AC3DB006FA499 /* DependenciesTests.swift */; };
 		109F1232247ACB6A006FA499 /* BuildTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F1231247ACB6A006FA499 /* BuildTask.swift */; };
-		10B835762483D82C0092D11F /* ApolloCodegenLib in Frameworks */ = {isa = PBXBuildFile; productRef = 10B835752483D82C0092D11F /* ApolloCodegenLib */; };
-		10B835782483D82C0092D11F /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = 10B835772483D82C0092D11F /* ApolloWebSocket */; };
-		10B8357A2483D82C0092D11F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 10B835792483D82C0092D11F /* Apollo */; };
-		10B8357C2483D82C0092D11F /* ApolloCore in Frameworks */ = {isa = PBXBuildFile; productRef = 10B8357B2483D82C0092D11F /* ApolloCore */; };
 		3058211DBDB3B23EEBEFEC76 /* Pods_instructional.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FE7A8219421D148D98A4CF9 /* Pods_instructional.framework */; };
 		3D08EC4EF9EF833C479CD2CF /* Pods_instructional_instructionalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 037119F311F47FEF458E267F /* Pods_instructional_instructionalUITests.framework */; };
 /* End PBXBuildFile section */
@@ -117,10 +113,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3058211DBDB3B23EEBEFEC76 /* Pods_instructional.framework in Frameworks */,
-				10B8357A2483D82C0092D11F /* Apollo in Frameworks */,
-				10B8357C2483D82C0092D11F /* ApolloCore in Frameworks */,
-				10B835782483D82C0092D11F /* ApolloWebSocket in Frameworks */,
-				10B835762483D82C0092D11F /* ApolloCodegenLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,18 +329,13 @@
 				109F11E2247879AC006FA499 /* Sources */,
 				109F11E3247879AC006FA499 /* Frameworks */,
 				109F11E4247879AC006FA499 /* Resources */,
+				6712C9A531EC50D2515F055C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = instructional;
-			packageProductDependencies = (
-				10B835752483D82C0092D11F /* ApolloCodegenLib */,
-				10B835772483D82C0092D11F /* ApolloWebSocket */,
-				10B835792483D82C0092D11F /* Apollo */,
-				10B8357B2483D82C0092D11F /* ApolloCore */,
-			);
 			productName = instructional;
 			productReference = 109F11E6247879AC006FA499 /* instructional.app */;
 			productType = "com.apple.product-type.application";
@@ -380,6 +367,7 @@
 				109F1206247879AE006FA499 /* Sources */,
 				109F1207247879AE006FA499 /* Frameworks */,
 				109F1208247879AE006FA499 /* Resources */,
+				50B91968F7362A12C6E26DE6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,9 +411,6 @@
 				Base,
 			);
 			mainGroup = 109F11DD247879AC006FA499;
-			packageReferences = (
-				10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */,
-			);
 			productRefGroup = 109F11E7247879AC006FA499 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -507,6 +492,23 @@
 			shellPath = /bin/sh;
 			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\npwd\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/**/*.graphql --localSchemaFile=\"API/schema.json\" API/API.swift\n";
 		};
+		50B91968F7362A12C6E26DE6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional-instructionalUITests/Pods-instructional-instructionalUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		55B69FAE28BC26F75AB4B2AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,6 +529,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6712C9A531EC50D2515F055C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-instructional/Pods-instructional-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C5EA4FDA7AB916BC1E618CB3 /* [CP] Check Pods Manifest.lock */ = {
@@ -912,40 +931,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.28.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		10B835752483D82C0092D11F /* ApolloCodegenLib */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloCodegenLib;
-		};
-		10B835772483D82C0092D11F /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
-		};
-		10B835792483D82C0092D11F /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		10B8357B2483D82C0092D11F /* ApolloCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 10B835742483D82C0092D11F /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloCore;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		109F11ED247879AC006FA499 /* instructional.xcdatamodeld */ = {

@@ -12,9 +12,28 @@ const typeDefs = gql`
   type Workshop {
     id: ID!
     title: String!
-    author: User
     preview: String!
+    author: User
+  }
+
+  type Query {
+    me: User
+    sensitiveInformation: String
+  }
+
+  type Mutation {
+    createUser(email: String!, password: String!, name: String!): User
+    login(email: String, pwd: String): String
   }
 `;
 
 module.exports = typeDefs;
+
+// queries:
+//    workshops: [Workshop!]!
+//    workshop(id: ID!): Workshop
+//    workshopByUser(userId: ID!): [Workshop!]!
+//
+// mutations
+//    createWorkshop(title: String!, preview: String, userId: ID!): Workshop
+//
