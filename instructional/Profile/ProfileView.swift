@@ -1,13 +1,8 @@
 import SwiftUI
 
-struct Profile: Identifiable {
-    var id: String    
-    var name: String
-}
-
 struct ProfileView: View {
     
-    var profile: Profile
+    var profile: Entities.Profile
     
     var body: some View {
         NavigationView {
@@ -25,7 +20,7 @@ struct ProfileView: View {
                     
                     Spacer()
                     
-                    WorkshopsListView(workshopData: WorkshopData())
+                    WorkshopsListView(workshopData: WorkshopData(feature: .profile(self.profile)))
                     
                     Spacer()
                 }
@@ -36,6 +31,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(profile: Profile(id: UUID().uuidString, name: "John"))
+        ProfileView(profile: Entities.Profile(id: UUID().uuidString, name: "John"))
     }
 }

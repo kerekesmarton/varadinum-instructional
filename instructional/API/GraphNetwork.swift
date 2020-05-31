@@ -1,13 +1,15 @@
 import CoreData
 import Apollo
 
+struct Entities {}
+
 protocol Model {
     associatedtype T
     func generateEntity() -> T?
 }
 
 class Network {
-    private(set) lazy var apollo = ApolloClient(url: URL(string: "https://eu1.prisma.sh/kerekes-marton-d1867d/instructional-cloud/dev")!)
+    @Inject var apollo: ApolloClient
     
     func fetch<T: GraphQLQuery>(query: T, completion: @escaping (Result<GraphQLResult<T.Data>, ServiceError>) -> Void ) {
         
@@ -18,8 +20,6 @@ class Network {
             case .failure(let error):
                 completion(.failure(ServiceError(from: error)))
             }
-            
         }
-        
     }
 }

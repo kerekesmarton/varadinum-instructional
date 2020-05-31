@@ -1,0 +1,12 @@
+query GetUser($input: UserWhereUniqueInput!) {
+  user(where:$input){
+    id
+    email
+    name
+    workshops {
+        id
+        title
+        preview
+    }
+  }
+}

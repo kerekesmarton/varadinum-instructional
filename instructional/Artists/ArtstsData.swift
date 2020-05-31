@@ -1,5 +1,13 @@
 import SwiftUI
 
+extension Entities {
+    struct Profile: Identifiable {
+        var id: String
+        var name: String
+        var workshops: [Entities.Workshop]?
+    }
+}
+
 protocol ArtistsObservable: ObservableObject {
     var viewModel: ArtistsViewModel { get }
 }
@@ -7,9 +15,8 @@ protocol ArtistsObservable: ObservableObject {
 enum ArtistsViewModel {
     case loading
     case error(ServiceError)
-    case result([Profile])
+    case result([Entities.Profile])
 }
-
 
 class ArtistsData: ObservableObject, ArtistsObservable {
     @Published var viewModel: ArtistsViewModel = .loading
@@ -34,7 +41,7 @@ class ArtistsData: ObservableObject, ArtistsObservable {
 }
 
 extension GetUsersQuery.Data.User: Model {
-    func generateEntity() -> Profile? {
-        Profile(id: id, name: name)
+    func generateEntity() -> Entities.Profile? {
+        Entities.Profile(id: id, name: name)
     }
 }

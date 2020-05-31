@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ArtistsView<T: ArtistsObservable>: View {
+struct ArtistsListView<T: ArtistsObservable>: View {
     
     @ObservedObject private var artistsData: T
     
@@ -8,22 +8,23 @@ struct ArtistsView<T: ArtistsObservable>: View {
         self.artistsData = artistsData
     }
     
+    private func makeView(_ artists: ([Entities.Profile])) -> AnyView {
+        return List(artists) {
+            NavigationLink($0.name,
+                           destination: WorkshopsListView(workshopData: WorkshopData(feature: .profile($0)))
+            )
+        }.navigationBarTitle("Artists").anyView
+    }
+    
     var body: some View {
         NavigationView<AnyView> {
             switch artistsData.viewModel {
             case .result(let artists):
-                return List(artists) {
-                    Text($0.name)
-                }.navigationBarTitle("Artists").anyView
+                return makeView(artists)
             case .error(let error):
-                return VStack {
-                    Text(error.localizedDescription)
-                }.anyView
+                return makeErrorView(error)
             case .loading:
-                return VStack {
-                    Text("Loading")
-                    ActivityIndicator(isAnimating: .constant(true), style: .large)
-                }.anyView
+                return makeLoadingView()
             }
         }
     }
@@ -40,16 +41,16 @@ struct ArtistsView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        let matt = Profile(id: UUID().uuidString,
+        let matt = Entities.Profile(id: UUID().uuidString,
                               name: "Matt")
-        let dave = Profile(id: UUID().uuidString,
+        let dave = Entities.Profile(id: UUID().uuidString,
                               name: "Dave")
-        let dawson = Profile(id: UUID().uuidString,
+        let dawson = Entities.Profile(id: UUID().uuidString,
                               name: "Dawson")
-        let tom = Profile(id: UUID().uuidString,
+        let tom = Entities.Profile(id: UUID().uuidString,
                               name: "Tom")
         
         let data = MockArtistsData(viewModel: .result([matt,dave,dawson,tom]))
-        return ArtistsView(artistsData: data)
+        return ArtistsListView(artistsData: data)
     }
 }

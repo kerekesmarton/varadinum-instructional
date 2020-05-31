@@ -1,0 +1,11 @@
+query GetWorkshop($input: WorkshopWhereUniqueInput!) {
+  workshop(where:$input) {
+    id
+    title
+    preview
+    author {
+      id
+      name
+    }
+  }
+}

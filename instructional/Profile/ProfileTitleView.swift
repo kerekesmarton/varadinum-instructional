@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ProfileTitleView: View {
     
-    var profile: Profile
+    var profile: Entities.Profile
     
     var body: some View {
         HStack{
@@ -56,6 +56,6 @@ struct ProfileTitleView: View {
 
 struct ProfileTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTitleView(profile: Profile(id: "1", name: "John"))
+        ProfileTitleView(profile: Entities.Profile(id: "1", name: "John"))
     }
 }

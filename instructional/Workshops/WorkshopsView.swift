@@ -2,14 +2,23 @@ import SwiftUI
 
 struct WorkshopListItem: View {
     
-    var workshop: Workshop
+    var workshop: Entities.Workshop
     
     var body: some View {
         HStack{
             AsyncImage(url: self.workshop.image, placeholder: Text("💃🏻🕺🏽"))
-            .shadow(radius: 3)
             
-            Text(self.workshop.artist.name)
+            VStack(alignment: .leading) {
+                Text(self.workshop.title)
+                .font(.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+
+                Text(self.workshop.artist.name)
+                .font(.subheadline)
+                .fontWeight(.regular)
+                .foregroundColor(.secondary)
+            }
         }
     }
 }
@@ -22,21 +31,20 @@ struct WorkshopsListView<T: WorkshopObservable>: View {
         self.workshopData = workshopData
     }
     
+    private func makeView(_ workshops: [Entities.Workshop]) -> AnyView {
+        return List(workshops) {
+            WorkshopListItem(workshop: $0)
+        }.anyView
+    }
+    
     var body: some View {
         switch workshopData.viewModel {
         case .result(let workshops):
-            return List(workshops) {
-                WorkshopListItem(workshop: $0)
-            }.anyView
+            return makeView(workshops)
         case .error(let error):
-            return VStack {
-                Text(error.localizedDescription)
-            }.anyView
+            return makeErrorView(error)
         case .loading:
-            return VStack {
-                Text("Loading")
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            }.anyView
+            return makeLoadingView()
         }
     }
 }
@@ -54,14 +62,13 @@ struct WorkshopsView_Previews: PreviewProvider {
         
         let url = URL(string: "https://en.wikipedia.org/wiki/File:Machito_and_his_sister_Graciella_Grillo.jpg")!
         
-        let profile = Profile(id: UUID().uuidString,
+        let profile = Entities.Profile(id: UUID().uuidString,
                             name: "Matt")
         
-        let ws = Workshop(id: UUID().uuidString,
+        let ws = Entities.Workshop(id: UUID().uuidString,
                           artist: profile,
                           image: url,
                           title: "Machito")
-        
         
         return WorkshopsListView(workshopData: MockWorkshopData(workshops: .result([ws])))
     }
