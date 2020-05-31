@@ -1,0 +1,25 @@
+type Query {
+  workshops: [Workshop!]!
+  workshop(id: ID!): Workshop
+  workshopByUser(userId: ID!): [Workshop!]!
+}
+
+type Mutation {
+  createUser(email: String!, password: String!, name: String!): User
+  createWorkshop(title: String!, preview: String, userId: ID!): Workshop
+}
+
+type User {
+  id: ID!
+  email: String
+  name: String!
+  password: String!
+  workshops: [Workshop!]!
+}
+
+type Workshop {
+  id: ID!
+  title: String!
+  preview: String!
+  author: User
+}

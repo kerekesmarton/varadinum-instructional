@@ -1,6 +1,7 @@
 type User {
   id: ID! @id
   email: String @unique
+  password: String!
   name: String!
   workshops: [Workshop!]!
 }
@@ -8,7 +9,6 @@ type User {
 type Workshop {
   id: ID! @id
   title: String!
-  published: Boolean! @default(value: false)
   author: User @relation(link: INLINE)
   preview: String!
 }

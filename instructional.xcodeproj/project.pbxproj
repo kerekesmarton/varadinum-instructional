@@ -76,6 +76,7 @@
 		109E461424838EEE0093B535 /* GetUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetUser.graphql; sourceTree = "<group>"; };
 		109E461524838EEE0093B535 /* GetWorkshop.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetWorkshop.graphql; sourceTree = "<group>"; };
 		109E4616248393410093B535 /* instructional.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = instructional.entitlements; sourceTree = "<group>"; };
+		109E46172483B1F60093B535 /* CreateUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateUser.graphql; sourceTree = "<group>"; };
 		109F11E6247879AC006FA499 /* instructional.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instructional.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		109F11E9247879AC006FA499 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		109F11EB247879AC006FA499 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				109E461324838EEE0093B535 /* GetUsers.graphql */,
 				109E461524838EEE0093B535 /* GetWorkshop.graphql */,
 				109E461224838EEE0093B535 /* GetWorkshops.graphql */,
+				109E46172483B1F60093B535 /* CreateUser.graphql */,
 			);
 			path = Queries;
 			sourceTree = "<group>";

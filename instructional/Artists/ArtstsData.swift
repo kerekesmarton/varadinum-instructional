@@ -37,6 +37,8 @@ class ArtistsData: ObservableObject, ArtistsObservable {
               self?.viewModel = .error(error)
             }
         }
+        
+//        api.fetch(query: <#T##GraphQLQuery#>, completion: <#T##(Result<GraphQLResult<GraphQLSelectionSet>, ServiceError>) -> Void#>)
     }
 }
 
