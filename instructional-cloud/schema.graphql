@@ -2,11 +2,13 @@ type Query {
   workshops: [Workshop!]!
   workshop(id: ID!): Workshop
   workshopByUser(userId: ID!): [Workshop!]!
+  currentUser: User!
 }
 
 type Mutation {
-  createUser(email: String!, password: String!, name: String!): User
   createWorkshop(title: String!, preview: String, userId: ID!): Workshop
+  register(username: String!, password: String!): User!
+  login(username: String!, password: String!): LoginResponse!
 }
 
 type User {
@@ -22,4 +24,9 @@ type Workshop {
   title: String!
   preview: String!
   author: User
+}
+
+type LoginResponse {
+  token: String!
+  user: User!
 }

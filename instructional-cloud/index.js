@@ -1,5 +1,6 @@
 const { prisma } = require('./generated/prisma-client')
 const { GraphQLServer } = require('graphql-yoga')
+const bcrypt = require('bcryptjs')
 
 const resolvers = {
   Query: {
@@ -17,6 +18,7 @@ const resolvers = {
         .posts()
     },
   },
+    
   Mutation: {
     createWorkshop(root, args, context) {
       return context.prisma.createWorkshop({
@@ -27,13 +29,16 @@ const resolvers = {
         },
       })
     },
-    createUser(root, args, context) {
-      return context.prisma.createUser({
-          email: args.email,
-          name: args.name,
-          password: args.password
+    
+    register: async (parent, { username, password }, context, info) => {
+      const hashedPassword = await bcrypt.hash(password, 10)
+      const user = await context.prisma.createUser({
+        username,
+        password: hashedPassword,
       })
+      return user
     },
+      
   },
   User: {
     workshops(root, args, context) {
