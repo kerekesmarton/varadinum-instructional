@@ -14,6 +14,8 @@ If something is failing, try
 
         npm  audit  fix
 
+Then
+
         npm start
 
 when the service  is running, in a different  tab deploy service:

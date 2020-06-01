@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon src/index.js",
-    "start:ci": "node src/index.js"
+    "start:ci": "node src/index.js",
+    "deploy": "sls deploy --region eu-west-3"
   },
   "author": "",
   "license": "ISC",
