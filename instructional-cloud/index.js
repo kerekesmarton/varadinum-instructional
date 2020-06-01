@@ -1,4 +1,5 @@
-const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server');
+const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server-lambda');
+// const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server');
 const { mergeTypeDefs, mergeResolvers } = require('@graphql-toolkit/schema-merging');
 const { AccountsModule } = require('@accounts/graphql-api');
 
@@ -14,7 +15,7 @@ const { resolvers } = require('./resolvers');
 
 //const accountsServer = creteAccountsServer()
 
-mongoose.connect('mongodb://localhost:27017/instructional-mongoose', {
+mongoose.connect('mongodb+srv://mkerekes_mongo:process.env.mongo_db_pwd@cluster0-p1v4h.mongodb.net/test', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -51,13 +52,21 @@ const schema = makeExecutableSchema({
 });
 
 const server = new ApolloServer({
-    schema,
-    context: accountsGraphQL.context,
-    engine: {
-      apiKey: "service:varadinum-instructional:dpSB72RWv9JpoKNoND1naQ",
-    }
+  schema,
+  context: accountsGraphQL.context,
+  introspection: true,
+  playground: {
+    endpoint: "/dev/graphql"
+  }
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}`);
+exports.graphqlHandler = server.createHandler({
+  cors: {
+      origin: true,
+      credentials: true,
+    },
 });
+
+// server.listen().then(({ url }) => {
+//   console.log(`🚀 Server ready at ${url}`);
+// });
