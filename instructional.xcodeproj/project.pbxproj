@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -329,7 +329,7 @@
 				109F11E2247879AC006FA499 /* Sources */,
 				109F11E3247879AC006FA499 /* Frameworks */,
 				109F11E4247879AC006FA499 /* Resources */,
-				A3615AC80F4F8E642847500F /* [CP] Embed Pods Frameworks */,
+				6712C9A531EC50D2515F055C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -367,7 +367,7 @@
 				109F1206247879AE006FA499 /* Sources */,
 				109F1207247879AE006FA499 /* Frameworks */,
 				109F1208247879AE006FA499 /* Resources */,
-				5249B68EB09DD8F394EC69BE /* [CP] Embed Pods Frameworks */,
+				50B91968F7362A12C6E26DE6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -492,7 +492,7 @@
 			shellPath = /bin/sh;
 			shellScript = "SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\npwd\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/**/*.graphql --localSchemaFile=\"API/schema.json\" API/API.swift\n";
 		};
-		5249B68EB09DD8F394EC69BE /* [CP] Embed Pods Frameworks */ = {
+		50B91968F7362A12C6E26DE6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,7 +531,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3615AC80F4F8E642847500F /* [CP] Embed Pods Frameworks */ = {
+		6712C9A531EC50D2515F055C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

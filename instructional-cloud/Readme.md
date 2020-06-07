@@ -1,15 +1,26 @@
 
 # Scheduler Guide
 
-## Install
+## Install and start local host
 
-1. Clone this repo
-2. Run `npm install` to grab dependencies from npm.
-3. Start prisma and database instance using `docker-compose up -d` (Run `yarn deploy -n` to use prisma demo servers)
-4. Deploy the datamodel using `prisma deploy`
-5. Start the server using `npm run dev`
 
-(Use npm run start to run without watch mode)
+    https://www.apollographql.com/docs/tutorial/schema/
+
+start local service:
+        
+        npm install apollo-server graphql
+        
+If something is failing, try 
+
+        npm  audit  fix
+
+Then
+
+        npm start
+
+when the service  is running, in a different  tab deploy service:
+
+        npx apollo service:push --graph=varadinum-instructional --key=user:gh.kerekesmarton:DtDc02arIhiV3PbSlzqxQw --endpoint=http://localhost:4000
 
 
 ## Schema Download
