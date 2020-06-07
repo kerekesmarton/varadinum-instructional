@@ -16,10 +16,11 @@
   "dependencies": {
     "apollo-server": "^2.14.1",
     "apollo-server-lambda": "^2.14.1",
+    "auth0-js": "^9.13.2",
     "casual": "^1.6.2",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
-    "graphql": "^15.0.0",
+    "graphql": "^15.1.0",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.8.0",
     "lodash": "^4.17.15",

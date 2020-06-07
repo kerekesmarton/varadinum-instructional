@@ -1,70 +1,107 @@
-const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server-lambda');
-// const { ApolloServer, gql, makeExecutableSchema } = require('apollo-server');
-const { mergeTypeDefs, mergeResolvers } = require('@graphql-toolkit/schema-merging');
-const { AccountsModule } = require('@accounts/graphql-api');
+// https://auth0.com/blog/develop-modern-apps-with-react-graphql-apollo-and-add-authentication/
+const { ApolloServer, gql, AuthenticationError } = require('apollo-server-lambda');
+const express  = require('express');
+const { User, Workshop } = require('./src/models');
+const jwt = require('jsonwebtoken');
+const jwksClient = require('jwks-rsa');
 
-const mongoose = require('mongoose');
-const { Mongo } = require('@accounts/mongo');
-const { AccountsServer } = require('@accounts/server');
-const { AccountsPassword } = require('@accounts/password');
+require('./src/store');
 
-const typeDefs = require('./schema');
-const { resolvers } = require('./resolvers');
-
-mongoose.connect('mongodb+srv://mkerekes_mongo:'+process.env.mongo_db_pwd+'@cluster0-p1v4h.mongodb.net/test', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-const accountsMongo = new Mongo(mongoose.connection);
-
-const accountsPassword = new AccountsPassword({
-  // You can customise the behavior of the password service by providing some options
-});
-
-const accountsServer = new AccountsServer(
-  {
-    // We link the mongo adapter we created in the previous step to the server
-    db: accountsMongo,
-    // Replace this value with a strong random secret
-    tokenSecret: process.env.account_secret,
-  },
-  {
-    // We pass a list of services to the server, in this example we just use the password service
-    password: accountsPassword,
+const typeDefs = gql`
+  type User {
+    id: String!
+    name: String!
+    email: String!
+    workshops: [Workshop]!
   }
-);
 
-// We generate the accounts-js GraphQL module
-const accountsGraphQL = AccountsModule.forRoot({ accountsServer });
+  type Workshop {
+    id: String!
+    title: String!
+    cover_image_url: String!
+    user: User!
+  }
 
-// A new schema is created combining our schema and the accounts-js schema
-const schema = makeExecutableSchema({
-  typeDefs: mergeTypeDefs([typeDefs, accountsGraphQL.typeDefs]),
-  resolvers: mergeResolvers([accountsGraphQL.resolvers, resolvers]),
-  schemaDirectives: {
-    ...accountsGraphQL.schemaDirectives,
+  type Query {
+      getUsers: [User],
+      getWorkshops: [Workshop]
+  }
+  type Mutation {
+      addUser(name: String!, email: String!): User
+      addWorkshop(title: String!, cover_image_url: String!): Workshop
+  }
+`;
+
+const resolvers = {
+  Query: {
+    getUsers: async () => await User.find({}).exec(),
+    getWorkshops: async () => await Workshop.find({}).exec()
   },
+  Mutation: {
+    addUser: async (_, args) => {
+        try {
+            let response = await User.create(args);
+            return response;
+        } catch(e) {
+            return e.message;
+        }
+    },
+    addWorkshop: async (_, args, { user }) => {
+      try {
+        const email = await user; // catching the reject from the user promise.
+        let response = await Workshop.create(args);
+        return response;
+      } catch(e) {
+        throw new AuthenticationError('You must be logged in to do this');
+      }
+    }
+  }
+};
+
+const client = jwksClient({
+    jwksUri: `https://marton.eu.auth0.com/.well-known/jwks.json`
 });
+
+function getKey(header, callback){
+    client.getSigningKey(header.kid, function(err, key) {
+      var signingKey = key.publicKey || key.rsaPublicKey;
+      callback(null, signingKey);
+    });
+}
+
+const options = {
+    audience: '98Pb8nTbsIKlevr1hAXbVitp2jCnPErz',
+    issuer: `https://marton.eu.auth0.com/`,
+    algorithms: ['RS256']
+};
 
 const server = new ApolloServer({
-  schema,
-  context: accountsGraphQL.context,
-  // context: ({ event, context }) => ({
-  //   headers: event.headers,
-  //   functionName: context.functionName,
-  //   event,
-  //   context,
-  // }),
-  introspection: true,
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    // simple auth check on every request
+    const token = req.headers.authorization;
+    const user = new Promise((resolve, reject) => {
+      jwt.verify(token, getKey, options, (err, decoded) => {
+        if(err) {
+          return reject(err);
+        }
+        resolve(decoded.email);
+      });
+    });
+
+    return {
+      user
+    };
+  },
   playground: {
     endpoint: "/dev/graphql"
   }
 });
 
 exports.graphqlHandler = server.createHandler({
-    cors: {
-      origin: true,
-      credentials: true,
-    },
-  });
+  cors: {
+    origin: true,
+    credentials: true,
+  },    
+});
