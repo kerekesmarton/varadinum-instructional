@@ -1,6 +1,6 @@
 // https://auth0.com/blog/develop-modern-apps-with-react-graphql-apollo-and-add-authentication/
-const { ApolloServer, gql } = require('apollo-server');
-const { find, filter } = require('lodash');
+const { ApolloServer, gql } = require('apollo-server-express');
+const express  = require('express');
 const { User, Workshop } = require('./models');
 require('./store');
 
@@ -23,7 +23,7 @@ const typeDefs = gql`
       getUsers: [User]
   }
   type Mutation {
-      addUser(userName: String!, email: String!): User
+      addUser(name: String!, email: String!): User
   }
 `;
 
@@ -48,6 +48,9 @@ const server = new ApolloServer({
   resolvers
 });
 
-server.listen().then(({ url }) => {
-  console.log("Connected successfully to server @%s", url);
-});
+const app = express();
+server.applyMiddleware({ app });
+
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+);

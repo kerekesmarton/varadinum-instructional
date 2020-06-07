@@ -10,5 +10,5 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, dbName:
 
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'error:'));
 db.once('open', () => console.log(`Connected to mongodb cluster at ${path}`));
