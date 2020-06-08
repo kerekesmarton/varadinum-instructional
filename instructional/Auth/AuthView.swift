@@ -22,17 +22,6 @@ struct AuthView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: AuthViewController, context: Context) {}
-    
-//    func makeCoordinator() -> Coordinator {
-//        Coordinator(self)
-//    }
-//    class Coordinator: NSObject {
-//        var parent: AuthView
-//
-//        init(_ parent: AuthView) {
-//            self.parent = parent
-//        }
-//    }
 }
 
 class AuthViewController: UIViewController {
@@ -60,8 +49,6 @@ class AuthViewController: UIViewController {
         }
         .withStyle {
             $0.title = "Varadinum"
-//            $0.logo = LazyImage(named: "company_logo")
-//            $0.primaryColor = UIColor(red: 0.6784, green: 0.5412, blue: 0.7333, alpha: 1.0)
         }
         .withOptions {
             $0.closable = true
