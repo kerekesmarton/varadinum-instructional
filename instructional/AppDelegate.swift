@@ -34,9 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        
         tasks.forEach {
             $0.application?(application, didReceiveRemoteNotification: userInfo, fetchCompletionHandler: completionHandler)
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        tasks.allSatisfy {
+            $0.application?(app, open: url, options: options) ?? true
         }
     }
 }

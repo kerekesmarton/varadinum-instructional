@@ -1,15 +1,26 @@
 import SwiftUI
 
-struct MainView: View {
+struct AppView<T: AppObservable>: View {
+    
+    @ObservedObject var appData: T
+    
+    init(data: T) {
+        appData = data
+    }
     
     @State private var selection = 0
     
     var profile = Entities.Profile(id: UUID().uuidString, name: "Timmy")
     
     var body: some View {
-        TabView(selection: $selection) {
-            ArtistsListView(artistsData: ArtistsData()).tabItem
-            ProfileView(profile: self.profile).tabItem
+        switch appData.viewModel {
+        case .start:
+            return TabView(selection: $selection) {
+                ArtistsListView(artistsData: ArtistsData()).tabItem
+                ProfileView(profile: self.profile).tabItem
+            }.anyView
+        case .authRequired:
+            return AuthHostView(AuthView()).anyView
         }
     }
 }
