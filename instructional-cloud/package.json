@@ -6,27 +6,24 @@
   "module": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r esm src/server.js",
-    "testStore": "node src/store.js",
-    "testLocalMongo": "node src/_mongo_test.js"
+    "mongoDB_tests": "node src/_mongo_test.js",
+    "localhost": "nodemon -r esm src/server.js",
+    "deploy": "serverless deploy --region eu-west-1"
   },
   "keywords": [],
   "author": "varadinum",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.14.1",
-    "apollo-server-lambda": "^2.14.1",
-    "auth0-js": "^9.13.2",
-    "casual": "^1.6.2",
+    "apollo-server-express": "^2.14.2",
+    "apollo-server-lambda": "^2.14.2",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
     "graphql": "^15.1.0",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.8.0",
-    "lodash": "^4.17.15",
     "mongodb": "^3.5.8",
     "mongoose": "^5.9.18",
-    "sequelize": "^5.21.11",
-    "sqlite": "^4.0.9"
+    "serverless": "^1.72.0"
   }
 }

@@ -1,11 +1,15 @@
 // https://auth0.com/blog/develop-modern-apps-with-react-graphql-apollo-and-add-authentication/
 const { ApolloServer, gql, AuthenticationError } = require('apollo-server-lambda');
-const express  = require('express');
-const { User, Workshop } = require('./src/models');
 const jwt = require('jsonwebtoken');
 const jwksClient = require('jwks-rsa');
 
+const { User, Workshop } = require('./src/models');
+
+console.log("connecting store");
+
 require('./src/store');
+
+console.log("starting up");
 
 const typeDefs = gql`
   type User {
@@ -31,6 +35,8 @@ const typeDefs = gql`
       addWorkshop(title: String!, cover_image_url: String!): Workshop
   }
 `;
+
+console.log("done typedefs");
 
 const resolvers = {
   Query: {
@@ -58,9 +64,13 @@ const resolvers = {
   }
 };
 
+console.log("done resolvers");
+
 const client = jwksClient({
     jwksUri: `https://marton.eu.auth0.com/.well-known/jwks.json`
 });
+
+console.log("connecting jwksClient");
 
 function getKey(header, callback){
     client.getSigningKey(header.kid, function(err, key) {
@@ -75,33 +85,44 @@ const options = {
     algorithms: ['RS256']
 };
 
+console.log("exporting server..");
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
+    console.log("received event:")
+    console.log(req);
     // simple auth check on every request
     const token = req.headers.authorization;
     const user = new Promise((resolve, reject) => {
       jwt.verify(token, getKey, options, (err, decoded) => {
         if(err) {
+          console.log(`Error: ${err}`);
           return reject(err);
         }
         resolve(decoded.email);
       });
     });
-
+    console.log(`found user ${user.email}`);
     return {
       user
     };
   },
   playground: {
-    endpoint: "/dev/graphql"
-  }
+    endpoint: "/dev/graphql",
+    settings: {
+      "request.credentials": "same-origin"
+    }
+  },
+  introspection: true
 });
+
+console.log("export complete");
 
 exports.graphqlHandler = server.createHandler({
   cors: {
-    origin: true,
+    origin: "*",
     credentials: true,
   },    
 });

@@ -8,7 +8,8 @@
 
 start local service:
         
-        npm install apollo-server graphql
+        npm install mongodb mongoose apollo-server-express apollo-server-lambda express jsonwebtoken jwks-rsa dotenv esm serverless graphql -save
+
         
 If something is failing, try 
 
