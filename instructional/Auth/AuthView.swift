@@ -16,33 +16,13 @@ struct AuthHostView: View {
 }
 
 struct AuthView: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> AuthViewController {
-        return AuthViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: AuthViewController, context: Context) {}
-}
-
-class AuthViewController: UIViewController {
     
-    @Inject var credentialsManager: CredentialsManager
+    @Inject var sessionManager: SessionPublisher
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if credentialsManager.hasValid() {
-            DispatchQueue.main.async {
-                self.dismiss(animated: true)
-            }
-            return
-        }
-        presentAuth()
-    }
-    
-    private func presentAuth() {
-        
-        Lock
+    init() {}
+
+    func makeUIViewController(context: Context) -> LockViewController {
+        return Lock
         .classic()
         .withConnections{ connections in
             connections.database(name: "Username-Password-Authentication", requiresUsername: false)
@@ -57,11 +37,13 @@ class AuthViewController: UIViewController {
         }
         .onAuth { credentials in
             self.save(credentials)
-        }.onError(callback: { (error) in
+        }
+        .onError(callback: { (error) in
             print(error)
-        })
-        .present(from: self)
+        }).controller
     }
+
+    func updateUIViewController(_ uiViewController: LockViewController, context: Context) {}
     
     private func save(_ credentials: Credentials) {
         guard let accessToken = credentials.accessToken else { return }
@@ -71,7 +53,7 @@ class AuthViewController: UIViewController {
             .start { result in
                 switch result {
                 case .success( _ /*let profile*/):
-                    _ = self.credentialsManager.store(credentials: credentials)
+                    self.sessionManager.save(credentials: credentials)
                 case .failure(let error):
                     print(error)
                 }

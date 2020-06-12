@@ -27,26 +27,15 @@ when the service  is running, in a different  tab deploy service:
 ## Schema Download
 
 `schema.json` can be downloaded from
-- [prisma](https://github.com/apollographql/apollo-tooling#apollo-clientdownload-schema-output)
-- [localhost](http://localhost:4466)
+- [docs](https://github.com/apollographql/apollo-tooling#apollo-clientdownload-schema-output)
+- [localhost](http://localhost:4000)
 
 
-### prisma
-1. uncomment in `prisma.yml` the endpoint pointing to prisma
-2. run `prisma deploy` 
-3. `cd` to `scheduler.xcodeproj`
-4. run 
-        
+### aws 
         apollo client:download-schema --endpoint=https://eu1.prisma.sh/kerekes-marton-d1867d/instructional-cloud/dev
 
 ### localhost
-1. uncomment in `prisma.yml` the endpoint pointing to localhost. Make sure it's not https.
-2. run `docker-compose up -d`
-3. run `prisma deploy`
-4. `cd` to `scheduler.xcodeproj
-5. run
-
-        apollo client:download-schema --endpoint=http://localhost:4466
+        apollo client:download-schema --endpoint=http://localhost:4000/graphql
 
 
 ## Schema Introspection

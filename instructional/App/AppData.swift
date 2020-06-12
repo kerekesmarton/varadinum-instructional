@@ -1,5 +1,6 @@
 import Foundation
 import Auth0
+import SwiftUI
 
 enum AppViewModel {
     case authRequired
@@ -12,13 +13,16 @@ protocol AppObservable: ObservableObject {
 
 class AppData: AppObservable {
     @Published var viewModel: AppViewModel = .start
-    @Inject var credentialsManager: CredentialsManager
     
-    init() {
-        if credentialsManager.hasValid() {
-            viewModel = .start
-        } else {
-            viewModel = .authRequired
+    @ObservedObject var session = SessionPublisher() {
+        didSet{
+            guard session.credentials != nil else {
+                self.viewModel = .authRequired
+                return
+            }
+            self.viewModel = .start
         }
     }
+    
+//    init() {}
 }

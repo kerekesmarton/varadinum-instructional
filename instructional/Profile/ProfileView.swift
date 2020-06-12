@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     
     var profile: Entities.Profile
+    @Inject var sessionManager: SessionPublisher
     
     var body: some View {
         NavigationView {
@@ -25,6 +26,9 @@ struct ProfileView: View {
                     Spacer()
                 }
             }.navigationBarTitle(self.profile.name)
+                .navigationBarItems(trailing: Button("Log out") {
+                    self.sessionManager.logout {}
+                })
         }
     }
 }
