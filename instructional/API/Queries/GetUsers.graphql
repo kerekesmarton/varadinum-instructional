@@ -1,7 +1,7 @@
-query GetUsers {
-  users{
+query GetUsers{
+  getUsers {
     id
-    email
     name
+    email
   }
 }

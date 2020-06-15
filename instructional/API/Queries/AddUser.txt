@@ -1,0 +1,5 @@
+mutation AddUser{
+  addUser(name:"Papa Joe", email:"papa@joe.com"){
+    id
+  }
+}

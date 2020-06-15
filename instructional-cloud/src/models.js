@@ -7,10 +7,21 @@ const userSchema = mongoose.Schema({
   email: String
 });
 
-const workshopSchema = mongoose.Schema({
+// const workshopSchema = mongoose.Schema({
+//   title: String,
+//   cover_image_url: String,
+//   user_id: String,
+// });
+
+const workshopSchema = new Schema ({
   title: String,
   cover_image_url: String,
-});
+  user_id: {
+    type:  Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  }
+})
 
 // userSchema
   

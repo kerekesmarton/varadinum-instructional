@@ -3,7 +3,6 @@ const { ApolloServer, AuthenticationError } = require('apollo-server-express');
 const express  = require('express');
 const { User, Workshop } = require('./src/models');
 
-
 require('./src/store');
 
 const typeDefs = require('./src/typedefs');

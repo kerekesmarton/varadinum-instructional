@@ -2,9 +2,23 @@ const { User, Workshop } = require('./models');
 
 const resolvers = {
     Query: {
-      getUsers: async () => await User.find({}).exec(),
-      getUser: async (_, { _id }) => await User.findById(_id).exec(),
-      getWorkshops: async () => await Workshop.find({}).exec()
+      getUsers: async () => {
+        return await User.find({}).exec()
+      },
+      getUser: async (_, { _id }) => {
+        return await User.findById(_id).exec()
+      },
+      getWorkshops: async () => {
+        return await Workshop.find({}).exec()
+      },
+      getWorkshop: async (_, { _id }) =>  {
+        const workshop = await Workshop.findById(_id).exec()
+        console.log(workshop)
+        const user = await User.findById(workshop.user_id).exec()
+        console.log(user)
+        workshop.user = user
+        return workshop
+      }
     },
     Mutation: {
       addUser: async (_, args) => {

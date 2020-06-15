@@ -1,0 +1,7 @@
+mutation AddWorkshop{
+  addWorkshop(title:"Body Movement", cover_image_url:"some") {
+    id
+    title
+    cover_image_url
+  }
+}

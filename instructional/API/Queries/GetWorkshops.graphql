@@ -1,11 +1,7 @@
 query GetWorkshops{
-  workshops{
+  getWorkshops {
     id
     title
-    preview
-    author{
-      id
-      name
-    }
+    cover_image_url
   }
 }

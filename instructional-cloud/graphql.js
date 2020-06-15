@@ -14,8 +14,6 @@ const client = jwksClient({
     jwksUri: `https://marton.eu.auth0.com/.well-known/jwks.json`
 });
 
-console.log("connecting jwksClient");
-
 function getKey(header, callback){
     client.getSigningKey(header.kid, function(err, key) {
       var signingKey = key.publicKey || key.rsaPublicKey;
@@ -28,8 +26,6 @@ const options = {
     issuer: `https://marton.eu.auth0.com/`,
     algorithms: ['RS256']
 };
-
-console.log("exporting server..");
 
 const server = new ApolloServer({
   typeDefs,
@@ -61,8 +57,6 @@ const server = new ApolloServer({
   },
   introspection: true
 });
-
-console.log("export complete");
 
 exports.graphqlHandler = server.createHandler({
   cors: {

@@ -78,7 +78,7 @@ class WorkshopData: ObservableObject, WorkshopObservable {
     }
 }
 
-extension GetWorkshopsQuery.Data.Workshop: Model {
+extension GetWorkshopQuery: Model {
     func generateEntity() -> Entities.Workshop? {
         guard let author = author else {
             return nil

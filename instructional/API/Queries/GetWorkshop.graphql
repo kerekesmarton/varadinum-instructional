@@ -1,11 +1,7 @@
-query GetWorkshop($input: WorkshopWhereUniqueInput!) {
-  workshop(where:$input) {
+query GetWorkshop($workshopID:ID!){
+  getWorkshop(_id: $workshopID){
     id
     title
-    preview
-    author {
-      id
-      name
-    }
+    cover_image_url
   }
 }
