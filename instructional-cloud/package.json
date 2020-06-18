@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "mongoDB_tests": "node src/_mongo_test.js",
     "localhost": "nodemon -r esm local_server.js",
-    "deploy": "serverless deploy --region eu-west-1"
+    "deploy": "serverless deploy --region eu-west-1",
+    "codegen": "cd .. && apollo client:download-schema --endpoint=http://localhost:4000/graphql"
   },
   "keywords": [],
   "author": "varadinum",

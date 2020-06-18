@@ -29,8 +29,6 @@ struct AsyncImage<Placeholder: View>: View {
     }
 }
 
-
-
 class ImageLoader: ObservableObject {
     @Published var image: UIImage?
     private let url: URL

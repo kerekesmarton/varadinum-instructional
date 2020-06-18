@@ -1,40 +1,51 @@
 import SwiftUI
 
-struct ProfileView: View {
+struct ProfileView<T: ProfileObservable>: View {
     
-    var profile: Entities.Profile
-    @Inject var sessionManager: SessionPublisher
+    @ObservedObject var data: T
     
     var body: some View {
+        switch data.viewModel {
+        case .loading:
+            return makeLoadingView()
+        case .error(let error):
+            return makeErrorView(error)
+        case .result(let user):
+            return makeView(user)
+        }
+    }
+    
+    func makeView(_ user: Entities.User) -> AnyView {
         NavigationView {
             GeometryReader { geometry in
                 VStack {
-                    ProfileTitleView(profile: self.profile)
+                    ProfileTitleView(user: user)
                     
-                    Button(action: {}){
-                        Text("Edit Profile")
-                            .fontWeight(.bold)
-                    }.frame(width: 400)
-                        .padding()
-                    
+                    Button(action: {}) {
+                        Text("Edit Profile").fontWeight(.bold)
+                    }
+                    .frame(width: 400)
+                    .padding()
+
                     Divider()
-                    
+
                     Spacer()
-                    
-                    WorkshopsListView(workshopData: WorkshopData(feature: .profile(self.profile)))
-                    
+
+                    WorkshopsListView(workshopData: WorkshopData(feature: .profile(user)))
+
                     Spacer()
                 }
-            }.navigationBarTitle(self.profile.name)
-                .navigationBarItems(trailing: Button("Log out") {
-                    self.sessionManager.logout {}
-                })
-        }
+            }
+            .navigationBarTitle(user.name)
+            .navigationBarItems(trailing: Button("Log out") {
+                self.data.logout()
+            })
+        }.anyView
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(profile: Entities.Profile(id: UUID().uuidString, name: "John"))
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView(profile: Entities.User(id: UUID().uuidString, name: "John"))
+//    }
+//}

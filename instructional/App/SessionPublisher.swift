@@ -13,6 +13,6 @@ class SessionPublisher: ObservableObject {
     }
     
     func logout(completion: @escaping () -> Void ) {
-        manager.clear()
+        _ = manager.clear()
     }
 }

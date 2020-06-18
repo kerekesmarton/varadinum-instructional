@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Entities {
-    struct Profile: Identifiable {
+    struct User: Identifiable {
         var id: String
         var name: String
         var workshops: [Entities.Workshop]?
@@ -15,7 +15,7 @@ protocol ArtistsObservable: ObservableObject {
 enum ArtistsViewModel {
     case loading
     case error(ServiceError)
-    case result([Entities.Profile])
+    case result([Entities.User])
 }
 
 class ArtistsData: ObservableObject, ArtistsObservable {
@@ -31,7 +31,7 @@ class ArtistsData: ObservableObject, ArtistsObservable {
             switch result {
             case .success(let graphQLResult):
               guard let data = graphQLResult.data else { return }
-              let results = data.users.compactMap { $0?.generateEntity() }
+              let results = data.getUsers?.compactMap { $0?.generateEntity() } ?? []
               self?.viewModel = .result(results)
             case .failure(let error):
               self?.viewModel = .error(error)
@@ -40,8 +40,8 @@ class ArtistsData: ObservableObject, ArtistsObservable {
     }
 }
 
-extension GetUsersQuery.Data.User: Model {
-    func generateEntity() -> Entities.Profile? {
-        Entities.Profile(id: id, name: name)
+extension GetUsersQuery.Data.GetUser: Model {
+    func generateEntity() -> Entities.User? {
+        Entities.User(id: id, name: name)
     }
 }

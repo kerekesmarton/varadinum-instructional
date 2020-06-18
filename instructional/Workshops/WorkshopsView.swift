@@ -13,11 +13,6 @@ struct WorkshopListItem: View {
                 .font(.headline)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
-
-                Text(self.workshop.artist.name)
-                .font(.subheadline)
-                .fontWeight(.regular)
-                .foregroundColor(.secondary)
             }
         }
     }
@@ -62,7 +57,7 @@ struct WorkshopsView_Previews: PreviewProvider {
         
         let url = URL(string: "https://en.wikipedia.org/wiki/File:Machito_and_his_sister_Graciella_Grillo.jpg")!
         
-        let profile = Entities.Profile(id: UUID().uuidString,
+        let profile = Entities.User(id: UUID().uuidString,
                             name: "Matt")
         
         let ws = Entities.Workshop(id: UUID().uuidString,

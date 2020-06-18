@@ -23,6 +23,4 @@ class AppData: AppObservable {
             self.viewModel = .start
         }
     }
-    
-//    init() {}
 }

@@ -3,39 +3,34 @@ const { User, Workshop } = require('./models');
 const resolvers = {
     Query: {
       getUsers: async () => {
-        return await User.find({}).exec()
+        return await User.find({}).populate('workshops').exec()
       },
       getUser: async (_, { _id }) => {
-        return await User.findById(_id).exec()
+        return await User.findById(_id).populate('workshops').exec()
       },
       getWorkshops: async () => {
-        return await Workshop.find({}).exec()
+        return await Workshop.find({}).populate('user').exec()
       },
       getWorkshop: async (_, { _id }) =>  {
-        const workshop = await Workshop.findById(_id).exec()
-        console.log(workshop)
-        const user = await User.findById(workshop.user_id).exec()
-        console.log(user)
-        workshop.user = user
-        return workshop
+        return await Workshop.findById(_id).populate('user').exec()
       }
+      
     },
     Mutation: {
       addUser: async (_, args) => {
           try {
-              let response = await User.create(args);
-              return response;
+              let response = await User.create(args)
+              return response
           } catch(e) {
-              return e.message;
+              return e.message
           }
       },
-      addWorkshop: async (_, args, { user }) => {
+      addWorkshop: async (_, args) => {
         try {
-          const email = await user; // catching the reject from the user promise.
-          let response = await Workshop.create(args);
-          return response;
+          let response = await Workshop.create(args)
+          return response
         } catch(e) {
-          throw new AuthenticationError('You must be logged in to do this');
+          throw e.message
         }
       }
     }

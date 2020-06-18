@@ -8,7 +8,7 @@ struct ArtistsListView<T: ArtistsObservable>: View {
         self.artistsData = artistsData
     }
     
-    private func makeView(_ artists: ([Entities.Profile])) -> AnyView {
+    private func makeView(_ artists: ([Entities.User])) -> AnyView {
         return List(artists) {
             NavigationLink($0.name,
                            destination: WorkshopsListView(workshopData: WorkshopData(feature: .profile($0)))
@@ -41,13 +41,13 @@ struct ArtistsView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        let matt = Entities.Profile(id: UUID().uuidString,
+        let matt = Entities.User(id: UUID().uuidString,
                               name: "Matt")
-        let dave = Entities.Profile(id: UUID().uuidString,
+        let dave = Entities.User(id: UUID().uuidString,
                               name: "Dave")
-        let dawson = Entities.Profile(id: UUID().uuidString,
+        let dawson = Entities.User(id: UUID().uuidString,
                               name: "Dawson")
-        let tom = Entities.Profile(id: UUID().uuidString,
+        let tom = Entities.User(id: UUID().uuidString,
                               name: "Tom")
         
         let data = MockArtistsData(viewModel: .result([matt,dave,dawson,tom]))

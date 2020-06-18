@@ -8,6 +8,12 @@ protocol Model {
     func generateEntity() -> T?
 }
 
+protocol AssisttedModel {
+    associatedtype T
+    associatedtype Associate
+    func generateEntity(with associate: Associate) -> T?
+}
+
 class Network {
     @Inject var apollo: ApolloClient
     

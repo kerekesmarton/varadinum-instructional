@@ -3,7 +3,7 @@ import SwiftUI
 extension Entities {
     struct Workshop: Identifiable {
         var id: String
-        var artist: Profile
+        var artist: User?
         var image: URL
         var title: String
     }
@@ -22,7 +22,7 @@ enum WorkshopViewModel {
 class WorkshopData: ObservableObject, WorkshopObservable {
     enum Feature {
         case all
-        case profile(Entities.Profile)
+        case profile(Entities.User)
     }
     
     @Published var viewModel = WorkshopViewModel.loading
@@ -39,7 +39,7 @@ class WorkshopData: ObservableObject, WorkshopObservable {
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else { return }
-                let results = data.workshops.compactMap { $0?.generateEntity() }
+                let results = data.getWorkshops?.compactMap { $0?.generateEntity() } ?? []
                 self?.viewModel = .result(results)
             case .failure(let error):
                 self?.viewModel = .error(error)
@@ -47,8 +47,8 @@ class WorkshopData: ObservableObject, WorkshopObservable {
         }
     }
     
-    private func load(profile: Entities.Profile) {
-        api.fetch(query: GetUserQuery(input: UserWhereUniqueInput(id: profile.id))) { [weak self] result in
+    private func load(user: Entities.User) {
+        api.fetch(query: GetUserQuery(userID: user.id) { [weak self] result in
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else {
@@ -72,28 +72,29 @@ class WorkshopData: ObservableObject, WorkshopObservable {
         switch feature {
         case .all:
             loadAll()
-        case .profile(let profile):
-            load(profile: profile)
+        case .profile(let user):
+            load(user: user)
         }
     }
 }
 
-extension GetWorkshopQuery: Model {
+extension GetWorkshopsQuery.Data.GetWorkshop: AssisttedModel {
+    
+    func generateEntity(with associate: Entities.User) -> Entities.Workshop? {
+        return Entities.Workshop(id: id, artist: associate, image: URL(string: coverImageUrl)!, title: title)
+    }
+    
     func generateEntity() -> Entities.Workshop? {
-        guard let author = author else {
-            return nil
-        }
-        let profile = Entities.Profile(id: author.id, name: author.name)
-        return Entities.Workshop(id: id, artist: profile, image: URL(string: preview)!, title: title)
+        return Entities.Workshop(id: id, artist: nil, image: URL(string: coverImageUrl)!, title: title)
     }
 }
-
-extension GetUserQuery.Data.User: Model {
-    func generateEntity() -> Entities.Profile? {
-        
-        var profile = Entities.Profile(id: id, name: name)
-        profile.workshops = workshops?.compactMap { Entities.Workshop(id: $0.id, artist: profile, image: URL(string: $0.preview)!, title: $0.title) }
-        
-        return profile
-    }
-}
+//
+//extension GetUserQuery.Data.User: Model {
+//    func generateEntity() -> Entities.Profile? {
+//
+//        var profile = Entities.Profile(id: id, name: name)
+//        profile.workshops = workshops?.compactMap { Entities.Workshop(id: $0.id, artist: profile, image: URL(string: $0.preview)!, title: $0.title) }
+//
+//        return profile
+//    }
+//}

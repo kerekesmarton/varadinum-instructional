@@ -3,5 +3,10 @@ query GetWorkshops{
     id
     title
     cover_image_url
+    user {
+      id
+      name
+      email
+    }
   }
 }

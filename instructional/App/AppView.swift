@@ -10,14 +10,12 @@ struct AppView<T: AppObservable>: View {
     
     @State private var selection = 0
     
-    var profile = Entities.Profile(id: UUID().uuidString, name: "Timmy")
-    
     var body: some View {
         switch appData.viewModel {
         case .start:
             return TabView(selection: $selection) {
                 ArtistsListView(artistsData: ArtistsData()).tabItem
-                ProfileView(profile: self.profile).tabItem
+                ProfileView(data: ProfileData).tabItem
             }.anyView
         case .authRequired:
             return AuthHostView(AuthView()).anyView
