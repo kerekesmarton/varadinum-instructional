@@ -4,7 +4,7 @@ extension Entities {
     struct Workshop: Identifiable {
         var id: String
         var artist: User?
-        var image: URL
+        var image: URL?
         var title: String
     }
 }
@@ -19,7 +19,7 @@ enum WorkshopViewModel {
     case error(ServiceError)
 }
 
-class WorkshopData: ObservableObject, WorkshopObservable {
+class WorkshopsListData: ObservableObject, WorkshopObservable {
     enum Feature {
         case all
         case profile(Entities.User)
@@ -48,14 +48,14 @@ class WorkshopData: ObservableObject, WorkshopObservable {
     }
     
     private func load(user: Entities.User) {
-        api.fetch(query: GetUserQuery(userID: user.id) { [weak self] result in
+        api.fetch(query: GetUserQuery(userID: user.id)) { [weak self] result in
             switch result {
             case .success(let graphQLResult):
                 guard let data = graphQLResult.data else {
                     self?.viewModel = .error(.unknown)
                     return
                 }
-                guard let result = data.user?.generateEntity(),
+                guard let result = data.getUser?.generateEntity(),
                     let workshops = result.workshops else {
                         self?.viewModel = .error(.empty)
                         return
@@ -89,12 +89,17 @@ extension GetWorkshopsQuery.Data.GetWorkshop: AssisttedModel {
     }
 }
 //
-//extension GetUserQuery.Data.User: Model {
-//    func generateEntity() -> Entities.Profile? {
-//
-//        var profile = Entities.Profile(id: id, name: name)
-//        profile.workshops = workshops?.compactMap { Entities.Workshop(id: $0.id, artist: profile, image: URL(string: $0.preview)!, title: $0.title) }
-//
-//        return profile
-//    }
-//}
+extension GetUserQuery.Data.GetUser: Model {
+    func generateEntity() -> Entities.User? {
+
+        var user = Entities.User(id: id, name: name)
+        user.workshops = workshops.compactMap {
+            guard let ws = $0 else {
+                return nil
+            }
+            return Entities.Workshop(id: ws.id, artist: user, image: URL(string: ws.coverImageUrl), title: ws.title)
+        }
+            
+        return user
+    }
+}

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ArtistsListView<T: ArtistsObservable>: View {
+struct UserListView<T: UsersObservable>: View {
     
     @ObservedObject private var artistsData: T
     
@@ -26,18 +26,22 @@ struct ArtistsListView<T: ArtistsObservable>: View {
             case .loading:
                 return makeLoadingView()
             }
+        }.onAppear {
+            self.artistsData.load()
         }
     }
 }
 
 struct ArtistsView_Previews: PreviewProvider {
     
-    class MockArtistsData: ArtistsObservable {
-        var viewModel: ArtistsViewModel
+    class MockArtistsData: UsersObservable {
+        var viewModel: UsersViewModel
         
-        init(viewModel: ArtistsViewModel) {
+        init(viewModel: UsersViewModel) {
             self.viewModel = viewModel
         }
+        
+        func load() {}
     }
     
     static var previews: some View {
@@ -51,6 +55,6 @@ struct ArtistsView_Previews: PreviewProvider {
                               name: "Tom")
         
         let data = MockArtistsData(viewModel: .result([matt,dave,dawson,tom]))
-        return ArtistsListView(artistsData: data)
+        return UserListView(artistsData: data)
     }
 }

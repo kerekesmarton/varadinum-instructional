@@ -5,21 +5,29 @@ import Auth0
 
 struct AuthHostView: View {
     var viewControllers: UIHostingController<AuthView>
-
-    init(_ view: AuthView) {
+    var completion: AuthCompletion
+    
+    init(_ view: AuthView, completion: @escaping AuthCompletion) {
         self.viewControllers = UIHostingController(rootView: view)
+        self.completion = completion
     }
 
     var body: some View {
-        AuthView()
+        AuthView(completion: completion)
     }
 }
+
+typealias AuthCompletion = ()->Void
 
 struct AuthView: UIViewControllerRepresentable {
     
     @Inject var sessionManager: SessionPublisher
+    @Environment(\.presentationMode) var presentationMode
+    var completion: AuthCompletion
     
-    init() {}
+    init(completion: @escaping AuthCompletion) {
+        self.completion = completion
+    }
 
     func makeUIViewController(context: Context) -> LockViewController {
         return Lock
@@ -34,8 +42,7 @@ struct AuthView: UIViewControllerRepresentable {
             $0.closable = true
             $0.oidcConformant = true
             $0.scope = "openid profile"
-        }
-        .onAuth { credentials in
+        }.onAuth { credentials in
             self.save(credentials)
         }
         .onError(callback: { (error) in
@@ -52,8 +59,10 @@ struct AuthView: UIViewControllerRepresentable {
             .userInfo(withAccessToken: accessToken)
             .start { result in
                 switch result {
-                case .success( _ /*let profile*/):
-                    self.sessionManager.save(credentials: credentials)
+                case .success( let userInfo):
+                    self.sessionManager.save(credentials)
+                    self.sessionManager.save(userInfo)
+                    self.completion()
                 case .failure(let error):
                     print(error)
                 }

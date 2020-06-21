@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		0EA9D2DB876696CF1DAA5C5F /* Pods_instructionalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D98B4ADD7208B192A2750EFE /* Pods_instructionalTests.framework */; };
-		1030CB4E247C320A001CADCD /* ArtistsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB4D247C320A001CADCD /* ArtistsListView.swift */; };
-		1030CB50247C3CC9001CADCD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB4F247C3CC9001CADCD /* ProfileView.swift */; };
-		1030CB53247C4FBB001CADCD /* ProfileTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB52247C4FBB001CADCD /* ProfileTitleView.swift */; };
-		1030CB56247C5109001CADCD /* WorkshopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB55247C5109001CADCD /* WorkshopsView.swift */; };
+		1030CB4E247C320A001CADCD /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB4D247C320A001CADCD /* UserListView.swift */; };
+		1030CB50247C3CC9001CADCD /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB4F247C3CC9001CADCD /* UserView.swift */; };
+		1030CB53247C4FBB001CADCD /* UserTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB52247C4FBB001CADCD /* UserTitleView.swift */; };
+		1030CB56247C5109001CADCD /* WorkshopsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB55247C5109001CADCD /* WorkshopsListView.swift */; };
 		1030CB59247C52A5001CADCD /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1030CB58247C52A5001CADCD /* AsyncImageView.swift */; };
 		106E820A249033A9003E52EF /* SessionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106E8209249033A9003E52EF /* SessionPublisher.swift */; };
 		1080DF18249535BA005D9FBC /* AddWorkshop.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1080DF17249535BA005D9FBC /* AddWorkshop.txt */; };
 		1080DF1A249535CB005D9FBC /* AddUser.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1080DF19249535CB005D9FBC /* AddUser.txt */; };
 		109E45F924827DDA0093B535 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45F824827DDA0093B535 /* API.swift */; };
-		109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FA24827DE60093B535 /* GraphNetwork.swift */; };
-		109E45FD24827F060093B535 /* WorkshopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FC24827F060093B535 /* WorkshopData.swift */; };
+		109E45FB24827DE60093B535 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FA24827DE60093B535 /* Network.swift */; };
+		109E45FD24827F060093B535 /* WorkshopsListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FC24827F060093B535 /* WorkshopsListData.swift */; };
 		109E45FF24829A170093B535 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E45FE24829A170093B535 /* ActivityIndicator.swift */; };
 		109E460124829B310093B535 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E460024829B310093B535 /* AnyView.swift */; };
 		109E460324829DD00093B535 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E460224829DD00093B535 /* ServiceError.swift */; };
-		109E46052482C1300093B535 /* ArtstsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E46042482C1300093B535 /* ArtstsData.swift */; };
+		109E46052482C1300093B535 /* UsersData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109E46042482C1300093B535 /* UsersData.swift */; };
 		109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11E9247879AC006FA499 /* AppDelegate.swift */; };
 		109F11EC247879AC006FA499 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F11EB247879AC006FA499 /* SceneDelegate.swift */; };
 		109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 109F11ED247879AC006FA499 /* instructional.xcdatamodeld */; };
@@ -38,7 +38,7 @@
 		109F122C247AC2DC006FA499 /* CoreServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122B247AC2DC006FA499 /* CoreServiceLocator.swift */; };
 		109F122E247AC3DB006FA499 /* DependenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F122D247AC3DB006FA499 /* DependenciesTests.swift */; };
 		109F1232247ACB6A006FA499 /* BuildTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109F1231247ACB6A006FA499 /* BuildTask.swift */; };
-		10BF36AF249833400065BDB9 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF36AE249833400065BDB9 /* ProfileData.swift */; };
+		10BF36AF249833400065BDB9 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BF36AE249833400065BDB9 /* UserData.swift */; };
 		10E6072A248EB717008FEAA3 /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10E60729248EB717008FEAA3 /* Auth0.plist */; };
 		10E6072C248EB907008FEAA3 /* AuthTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E6072B248EB907008FEAA3 /* AuthTask.swift */; };
 		10E6072E248EBB19008FEAA3 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E6072D248EBB19008FEAA3 /* AuthView.swift */; };
@@ -66,22 +66,22 @@
 
 /* Begin PBXFileReference section */
 		037119F311F47FEF458E267F /* Pods_instructional_instructionalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instructional_instructionalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1030CB4D247C320A001CADCD /* ArtistsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsListView.swift; sourceTree = "<group>"; };
-		1030CB4F247C3CC9001CADCD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		1030CB52247C4FBB001CADCD /* ProfileTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTitleView.swift; sourceTree = "<group>"; };
-		1030CB55247C5109001CADCD /* WorkshopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsView.swift; sourceTree = "<group>"; };
+		1030CB4D247C320A001CADCD /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
+		1030CB4F247C3CC9001CADCD /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		1030CB52247C4FBB001CADCD /* UserTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTitleView.swift; sourceTree = "<group>"; };
+		1030CB55247C5109001CADCD /* WorkshopsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsListView.swift; sourceTree = "<group>"; };
 		1030CB58247C52A5001CADCD /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		106E8209249033A9003E52EF /* SessionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPublisher.swift; sourceTree = "<group>"; };
 		1080DF17249535BA005D9FBC /* AddWorkshop.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddWorkshop.txt; sourceTree = "<group>"; };
 		1080DF19249535CB005D9FBC /* AddUser.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddUser.txt; sourceTree = "<group>"; };
 		109E45F024827C270093B535 /* schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		109E45F824827DDA0093B535 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		109E45FA24827DE60093B535 /* GraphNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphNetwork.swift; sourceTree = "<group>"; };
-		109E45FC24827F060093B535 /* WorkshopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopData.swift; sourceTree = "<group>"; };
+		109E45FA24827DE60093B535 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		109E45FC24827F060093B535 /* WorkshopsListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopsListData.swift; sourceTree = "<group>"; };
 		109E45FE24829A170093B535 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		109E460024829B310093B535 /* AnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyView.swift; sourceTree = "<group>"; };
 		109E460224829DD00093B535 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
-		109E46042482C1300093B535 /* ArtstsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtstsData.swift; sourceTree = "<group>"; };
+		109E46042482C1300093B535 /* UsersData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersData.swift; sourceTree = "<group>"; };
 		109E461224838EEE0093B535 /* GetWorkshops.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetWorkshops.graphql; sourceTree = "<group>"; };
 		109E461324838EEE0093B535 /* GetUsers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetUsers.graphql; sourceTree = "<group>"; };
 		109E461424838EEE0093B535 /* GetUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = GetUser.graphql; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		109F122B247AC2DC006FA499 /* CoreServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreServiceLocator.swift; sourceTree = "<group>"; };
 		109F122D247AC3DB006FA499 /* DependenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependenciesTests.swift; sourceTree = "<group>"; };
 		109F1231247ACB6A006FA499 /* BuildTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildTask.swift; sourceTree = "<group>"; };
-		10BF36AE249833400065BDB9 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
+		10BF36AE249833400065BDB9 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		10E60729248EB717008FEAA3 /* Auth0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
 		10E6072B248EB907008FEAA3 /* AuthTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTask.swift; sourceTree = "<group>"; };
 		10E6072D248EBB19008FEAA3 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
@@ -151,30 +151,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1030CB51247C4EEE001CADCD /* Profile */ = {
+		1030CB51247C4EEE001CADCD /* User */ = {
 			isa = PBXGroup;
 			children = (
-				1030CB4F247C3CC9001CADCD /* ProfileView.swift */,
-				10BF36AE249833400065BDB9 /* ProfileData.swift */,
-				1030CB52247C4FBB001CADCD /* ProfileTitleView.swift */,
+				1030CB4F247C3CC9001CADCD /* UserView.swift */,
+				10BF36AE249833400065BDB9 /* UserData.swift */,
+				1030CB52247C4FBB001CADCD /* UserTitleView.swift */,
+				106E8209249033A9003E52EF /* SessionPublisher.swift */,
 			);
-			path = Profile;
+			path = User;
 			sourceTree = "<group>";
 		};
-		1030CB54247C5083001CADCD /* Artists */ = {
+		1030CB54247C5083001CADCD /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				1030CB4D247C320A001CADCD /* ArtistsListView.swift */,
-				109E46042482C1300093B535 /* ArtstsData.swift */,
+				1030CB4D247C320A001CADCD /* UserListView.swift */,
+				109E46042482C1300093B535 /* UsersData.swift */,
 			);
-			path = Artists;
+			path = Users;
 			sourceTree = "<group>";
 		};
 		1030CB57247C51E5001CADCD /* Workshops */ = {
 			isa = PBXGroup;
 			children = (
-				1030CB55247C5109001CADCD /* WorkshopsView.swift */,
-				109E45FC24827F060093B535 /* WorkshopData.swift */,
+				1030CB55247C5109001CADCD /* WorkshopsListView.swift */,
+				109E45FC24827F060093B535 /* WorkshopsListData.swift */,
 			);
 			path = Workshops;
 			sourceTree = "<group>";
@@ -194,7 +195,7 @@
 			children = (
 				109E45F824827DDA0093B535 /* API.swift */,
 				109E460224829DD00093B535 /* ServiceError.swift */,
-				109E45FA24827DE60093B535 /* GraphNetwork.swift */,
+				109E45FA24827DE60093B535 /* Network.swift */,
 				109E45F024827C270093B535 /* schema.json */,
 				109E460D24838ECD0093B535 /* Queries */,
 			);
@@ -246,8 +247,8 @@
 				1030CB5A247C532A001CADCD /* Views */,
 				10E60732248ECB9E008FEAA3 /* Auth */,
 				1030CB57247C51E5001CADCD /* Workshops */,
-				1030CB54247C5083001CADCD /* Artists */,
-				1030CB51247C4EEE001CADCD /* Profile */,
+				1030CB54247C5083001CADCD /* Users */,
+				1030CB51247C4EEE001CADCD /* User */,
 				109F122024787AF2006FA499 /* App Config */,
 				109E45ED24827C270093B535 /* API */,
 				109F11F2247879AD006FA499 /* Assets.xcassets */,
@@ -321,7 +322,6 @@
 			children = (
 				109F11F0247879AC006FA499 /* AppView.swift */,
 				10E6072F248EC813008FEAA3 /* AppData.swift */,
-				106E8209249033A9003E52EF /* SessionPublisher.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -523,13 +523,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/${TARGET_NAME}/**/*.graphql",
 			);
 			name = "API Codegen";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/${TARGET_NAME}/API/API.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -625,27 +623,27 @@
 				109F122424793308006FA499 /* CoreDataTask.swift in Sources */,
 				109F11EA247879AC006FA499 /* AppDelegate.swift in Sources */,
 				109F11EC247879AC006FA499 /* SceneDelegate.swift in Sources */,
-				109E45FD24827F060093B535 /* WorkshopData.swift in Sources */,
+				109E45FD24827F060093B535 /* WorkshopsListData.swift in Sources */,
 				10E6072E248EBB19008FEAA3 /* AuthView.swift in Sources */,
 				109E45F924827DDA0093B535 /* API.swift in Sources */,
 				109F122C247AC2DC006FA499 /* CoreServiceLocator.swift in Sources */,
-				1030CB50247C3CC9001CADCD /* ProfileView.swift in Sources */,
+				1030CB50247C3CC9001CADCD /* UserView.swift in Sources */,
 				106E820A249033A9003E52EF /* SessionPublisher.swift in Sources */,
-				1030CB4E247C320A001CADCD /* ArtistsListView.swift in Sources */,
+				1030CB4E247C320A001CADCD /* UserListView.swift in Sources */,
 				10E6072C248EB907008FEAA3 /* AuthTask.swift in Sources */,
 				109F11F1247879AC006FA499 /* AppView.swift in Sources */,
-				109E45FB24827DE60093B535 /* GraphNetwork.swift in Sources */,
+				109E45FB24827DE60093B535 /* Network.swift in Sources */,
 				109F11EF247879AC006FA499 /* instructional.xcdatamodeld in Sources */,
 				109E460124829B310093B535 /* AnyView.swift in Sources */,
-				1030CB56247C5109001CADCD /* WorkshopsView.swift in Sources */,
+				1030CB56247C5109001CADCD /* WorkshopsListView.swift in Sources */,
 				109F1232247ACB6A006FA499 /* BuildTask.swift in Sources */,
-				109E46052482C1300093B535 /* ArtstsData.swift in Sources */,
+				109E46052482C1300093B535 /* UsersData.swift in Sources */,
 				10E60730248EC813008FEAA3 /* AppData.swift in Sources */,
-				10BF36AF249833400065BDB9 /* ProfileData.swift in Sources */,
+				10BF36AF249833400065BDB9 /* UserData.swift in Sources */,
 				109F122624793B33006FA499 /* AppTasks.swift in Sources */,
 				109F122824793BE8006FA499 /* PushNotificationTask.swift in Sources */,
 				109E45FF24829A170093B535 /* ActivityIndicator.swift in Sources */,
-				1030CB53247C4FBB001CADCD /* ProfileTitleView.swift in Sources */,
+				1030CB53247C4FBB001CADCD /* UserTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

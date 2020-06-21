@@ -1,47 +1,32 @@
 import SwiftUI
 
-struct AppView<T: AppObservable>: View {
+struct AppView: View {
     
-    @ObservedObject var appData: T
+//    @ObservedObject var appData: T
     
-    init(data: T) {
-        appData = data
+//    init(data: T) {
+//        appData = data
+//    }
+    
+//    @State private var selection = 0
+    
+    @State var showingProfile = false
+
+    var presentUserButton: some View {
+        Button(action: {
+            self.showingProfile.toggle()
+        }) {
+            Text("Profile")
+        }.sheet(isPresented: $showingProfile) {
+            UserView(data: UserData(feature: .auth))
+        }
     }
-    
-    @State private var selection = 0
     
     var body: some View {
-        switch appData.viewModel {
-        case .start:
-            return TabView(selection: $selection) {
-                ArtistsListView(artistsData: ArtistsData()).tabItem
-                ProfileView(data: ProfileData).tabItem
-            }.anyView
-        case .authRequired:
-            return AuthHostView(AuthView()).anyView
-        }
-    }
-}
-
-extension ArtistsListView {
-    var tabItem: some View {
-        return self.tabItem {
-                VStack {
-                    Image(systemName: "person.3.fill")
-                    Text("Artists")
-            }.tag(0)
-        }
-    }
-}
-
-extension ProfileView {
-    var tabItem: some View {
-        return self.tabItem {
-                VStack {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-        }
-        .tag(1)
+        NavigationView {
+            WorkshopsListView(workshopData: WorkshopsListData(feature: .all))
+            .navigationBarTitle("Feed")
+            .navigationBarItems(trailing: presentUserButton)
+        }.anyView
     }
 }

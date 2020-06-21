@@ -4,9 +4,7 @@ import Auth0
 
 class BuildTask: NSObject, AppTaskable {
     
-    private var credentialsManager = CredentialsManager(authentication: Auth0.authentication())
-    private var network = Network()
-    private var apolloClient = ApolloClient(url: Environment.dev.url)
+    private var apolloClient = ApolloClient(url: Network.Environment.local.url)
     private var authTask = AuthTask()
     private var pushNotificationTask = PushNotificationTask()
     private var coreDataTask = CoreDataTask()
@@ -17,8 +15,7 @@ class BuildTask: NSObject, AppTaskable {
         Register { self.pushNotificationTask }
         Register { self.authTask }
         Register { self.apolloClient }
-        Register { self.network }
-        Register { self.credentialsManager }
+        Register { Network() }
         Register { self.sessionPublisher }
     }
     

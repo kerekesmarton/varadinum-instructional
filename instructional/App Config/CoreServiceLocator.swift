@@ -69,7 +69,7 @@ public struct Register {
 
 /// Resolves an instance from the dependency injection container.
 @propertyWrapper
-public class Inject<Value> {
+public class Inject<Value>: ObservableObject {
     private let name: String?
     private var storage: Value?
     

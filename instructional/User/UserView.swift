@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileView<T: ProfileObservable>: View {
+struct UserView<T: UserObservable>: View {
     
     @ObservedObject var data: T
     
@@ -8,6 +8,8 @@ struct ProfileView<T: ProfileObservable>: View {
         switch data.viewModel {
         case .loading:
             return makeLoadingView()
+        case .login(let completion):
+            return makeLoginView(completion: completion)
         case .error(let error):
             return makeErrorView(error)
         case .result(let user):
@@ -19,7 +21,7 @@ struct ProfileView<T: ProfileObservable>: View {
         NavigationView {
             GeometryReader { geometry in
                 VStack {
-                    ProfileTitleView(user: user)
+                    UserTitleView(user: user)
                     
                     Button(action: {}) {
                         Text("Edit Profile").fontWeight(.bold)
@@ -31,7 +33,7 @@ struct ProfileView<T: ProfileObservable>: View {
 
                     Spacer()
 
-                    WorkshopsListView(workshopData: WorkshopData(feature: .profile(user)))
+                    WorkshopsListView(workshopData: WorkshopsListData(feature: .profile(user)))
 
                     Spacer()
                 }
@@ -41,6 +43,10 @@ struct ProfileView<T: ProfileObservable>: View {
                 self.data.logout()
             })
         }.anyView
+    }
+    
+    func makeLoginView(completion: @escaping AuthCompletion) -> AnyView {
+        return AuthView(completion: completion).anyView
     }
 }
 

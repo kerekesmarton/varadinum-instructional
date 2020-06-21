@@ -8,23 +8,20 @@ extension Entities {
     }
 }
 
-protocol ArtistsObservable: ObservableObject {
-    var viewModel: ArtistsViewModel { get }
+protocol UsersObservable: ObservableObject {
+    var viewModel: UsersViewModel { get }
+    func load()
 }
 
-enum ArtistsViewModel {
+enum UsersViewModel {
     case loading
     case error(ServiceError)
     case result([Entities.User])
 }
 
-class ArtistsData: ObservableObject, ArtistsObservable {
-    @Published var viewModel: ArtistsViewModel = .loading
+class UsersData: ObservableObject, UsersObservable {
+    @Published var viewModel: UsersViewModel = .loading
     @Inject var api: Network
-    
-    init() {
-        load()
-    }
     
     func load() {
         api.fetch(query: GetUsersQuery()) { [weak self] (result) in

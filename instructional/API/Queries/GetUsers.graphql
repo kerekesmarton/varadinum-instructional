@@ -3,5 +3,9 @@ query GetUsers{
     id
     name
     email
+    workshops {
+      title
+      cover_image_url
+    }
   }
 }

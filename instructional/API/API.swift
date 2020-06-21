@@ -14,6 +14,12 @@ public final class GetUserQuery: GraphQLQuery {
         id
         name
         email
+        workshops {
+          __typename
+          id
+          title
+          cover_image_url
+        }
       }
     }
     """
@@ -64,6 +70,7 @@ public final class GetUserQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("email", type: .nonNull(.scalar(String.self))),
+        GraphQLField("workshops", type: .nonNull(.list(.object(Workshop.selections)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -72,8 +79,8 @@ public final class GetUserQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: String, name: String, email: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "email": email])
+      public init(id: String, name: String, email: String, workshops: [Workshop?]) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "email": email, "workshops": workshops.map { (value: Workshop?) -> ResultMap? in value.flatMap { (value: Workshop) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -111,6 +118,72 @@ public final class GetUserQuery: GraphQLQuery {
           resultMap.updateValue(newValue, forKey: "email")
         }
       }
+
+      public var workshops: [Workshop?] {
+        get {
+          return (resultMap["workshops"] as! [ResultMap?]).map { (value: ResultMap?) -> Workshop? in value.flatMap { (value: ResultMap) -> Workshop in Workshop(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Workshop?) -> ResultMap? in value.flatMap { (value: Workshop) -> ResultMap in value.resultMap } }, forKey: "workshops")
+        }
+      }
+
+      public struct Workshop: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Workshop"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(String.self))),
+          GraphQLField("title", type: .nonNull(.scalar(String.self))),
+          GraphQLField("cover_image_url", type: .nonNull(.scalar(String.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: String, title: String, coverImageUrl: String) {
+          self.init(unsafeResultMap: ["__typename": "Workshop", "id": id, "title": title, "cover_image_url": coverImageUrl])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: String {
+          get {
+            return resultMap["id"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var title: String {
+          get {
+            return resultMap["title"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "title")
+          }
+        }
+
+        public var coverImageUrl: String {
+          get {
+            return resultMap["cover_image_url"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "cover_image_url")
+          }
+        }
+      }
     }
   }
 }
@@ -125,6 +198,11 @@ public final class GetUsersQuery: GraphQLQuery {
         id
         name
         email
+        workshops {
+          __typename
+          title
+          cover_image_url
+        }
       }
     }
     """
@@ -168,6 +246,7 @@ public final class GetUsersQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(String.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("email", type: .nonNull(.scalar(String.self))),
+        GraphQLField("workshops", type: .nonNull(.list(.object(Workshop.selections)))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -176,8 +255,8 @@ public final class GetUsersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: String, name: String, email: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "email": email])
+      public init(id: String, name: String, email: String, workshops: [Workshop?]) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "email": email, "workshops": workshops.map { (value: Workshop?) -> ResultMap? in value.flatMap { (value: Workshop) -> ResultMap in value.resultMap } }])
       }
 
       public var __typename: String {
@@ -213,6 +292,62 @@ public final class GetUsersQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "email")
+        }
+      }
+
+      public var workshops: [Workshop?] {
+        get {
+          return (resultMap["workshops"] as! [ResultMap?]).map { (value: ResultMap?) -> Workshop? in value.flatMap { (value: ResultMap) -> Workshop in Workshop(unsafeResultMap: value) } }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Workshop?) -> ResultMap? in value.flatMap { (value: Workshop) -> ResultMap in value.resultMap } }, forKey: "workshops")
+        }
+      }
+
+      public struct Workshop: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Workshop"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("title", type: .nonNull(.scalar(String.self))),
+          GraphQLField("cover_image_url", type: .nonNull(.scalar(String.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(title: String, coverImageUrl: String) {
+          self.init(unsafeResultMap: ["__typename": "Workshop", "title": title, "cover_image_url": coverImageUrl])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var title: String {
+          get {
+            return resultMap["title"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "title")
+          }
+        }
+
+        public var coverImageUrl: String {
+          get {
+            return resultMap["cover_image_url"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "cover_image_url")
+          }
         }
       }
     }
@@ -413,6 +548,12 @@ public final class GetWorkshopsQuery: GraphQLQuery {
         id
         title
         cover_image_url
+        user {
+          __typename
+          id
+          name
+          email
+        }
       }
     }
     """
@@ -456,6 +597,7 @@ public final class GetWorkshopsQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(String.self))),
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
         GraphQLField("cover_image_url", type: .nonNull(.scalar(String.self))),
+        GraphQLField("user", type: .nonNull(.object(User.selections))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -464,8 +606,8 @@ public final class GetWorkshopsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: String, title: String, coverImageUrl: String) {
-        self.init(unsafeResultMap: ["__typename": "Workshop", "id": id, "title": title, "cover_image_url": coverImageUrl])
+      public init(id: String, title: String, coverImageUrl: String, user: User) {
+        self.init(unsafeResultMap: ["__typename": "Workshop", "id": id, "title": title, "cover_image_url": coverImageUrl, "user": user.resultMap])
       }
 
       public var __typename: String {
@@ -501,6 +643,72 @@ public final class GetWorkshopsQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "cover_image_url")
+        }
+      }
+
+      public var user: User {
+        get {
+          return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "user")
+        }
+      }
+
+      public struct User: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["User"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(String.self))),
+          GraphQLField("name", type: .nonNull(.scalar(String.self))),
+          GraphQLField("email", type: .nonNull(.scalar(String.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: String, name: String, email: String) {
+          self.init(unsafeResultMap: ["__typename": "User", "id": id, "name": name, "email": email])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: String {
+          get {
+            return resultMap["id"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var email: String {
+          get {
+            return resultMap["email"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "email")
+          }
         }
       }
     }

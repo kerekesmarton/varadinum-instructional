@@ -3,5 +3,10 @@ query GetUser($userID:ID!){
     id
     name
     email
+    workshops {
+      id
+      title
+      cover_image_url
+    }
   }
 }

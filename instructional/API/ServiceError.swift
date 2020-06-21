@@ -13,7 +13,7 @@ enum ServiceError: Error {
         case .unknown:
             return "Unknown"
         case .client(let str):
-            return "Client error: " + str
+            return "Something went wrong " + str
         case .decoding(let decodingError):
             return decodingError.localizedDescription
         case .server(let error):

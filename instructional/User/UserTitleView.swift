@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProfileTitleView: View {
+struct UserTitleView: View {
     
     var user: Entities.User
     
@@ -54,8 +54,8 @@ struct ProfileTitleView: View {
     }
 }
 
-struct ProfileTitleView_Previews: PreviewProvider {
+struct UserTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileTitleView(user: Entities.User(id: "1", name: "John"))
+        UserTitleView(user: Entities.User(id: "1", name: "John"))
     }
 }
