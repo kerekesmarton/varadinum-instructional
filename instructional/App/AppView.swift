@@ -2,21 +2,13 @@ import SwiftUI
 
 struct AppView: View {
     
-//    @ObservedObject var appData: T
-    
-//    init(data: T) {
-//        appData = data
-//    }
-    
-//    @State private var selection = 0
-    
     @State var showingProfile = false
 
     var presentUserButton: some View {
         Button(action: {
             self.showingProfile.toggle()
         }) {
-            Text("Profile")
+            Image(systemName: "person.fill")
         }.sheet(isPresented: $showingProfile) {
             UserView(data: UserData(feature: .auth))
         }

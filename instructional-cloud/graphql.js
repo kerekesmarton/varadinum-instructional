@@ -49,12 +49,6 @@ const server = new ApolloServer({
       user
     };
   },
-  playground: {
-    endpoint: "/dev/graphql",
-    settings: {
-      "request.credentials": "same-origin"
-    }
-  },
   introspection: true
 });
 

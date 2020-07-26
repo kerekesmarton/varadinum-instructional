@@ -1,5 +1,6 @@
 import CoreData
 import Apollo
+import Combine
 
 struct Entities {}
 
@@ -15,7 +16,17 @@ protocol AssisttedModel {
 }
 
 class Network {
-    @Inject var apollo: ApolloClient
+     
+    
+    @Inject var session: SessionPublisher
+    
+    private lazy var networkTransport: HTTPNetworkTransport = {
+        let transport = HTTPNetworkTransport(url: Environment.local.url)
+        transport.delegate = self
+        return transport
+    }()
+    
+     private(set) lazy var apollo = ApolloClient(networkTransport: self.networkTransport)
     
     enum Environment: String, Codable {
         case dev = "https://ewn3plzne1.execute-api.eu-west-1.amazonaws.com/dev/graphql"
@@ -42,4 +53,41 @@ class Network {
             }
         }
     }
+    
+    func fetch<T: GraphQLQuery>(query: T) -> Future<GraphQLResult<T.Data>, ServiceError> {
+        
+        return Future { promise in
+            
+            self.fetch(query: query) { (result) in
+                switch result {
+                case .success(let graphResult):
+                    promise(.success(graphResult))
+                case .failure(let error):
+                    promise(.failure(error))
+                }
+            }
+        }
+    }
+}
+
+extension Network: HTTPNetworkTransportPreflightDelegate {
+
+  func networkTransport(_ networkTransport: HTTPNetworkTransport,
+                          shouldSend request: URLRequest) -> Bool {
+    
+    return true
+  }
+  
+  func networkTransport(_ networkTransport: HTTPNetworkTransport,
+                        willSend request: inout URLRequest) {
+                        
+    var headers = request.allHTTPHeaderFields ?? [String: String]()
+
+    if let token = session.getToken() {
+        headers["Authorization"] = "Bearer \(token)"
+    }
+    
+    // Re-assign the updated headers to the request.
+    request.allHTTPHeaderFields = headers
+  }
 }

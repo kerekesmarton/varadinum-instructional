@@ -88,18 +88,3 @@ extension GetWorkshopsQuery.Data.GetWorkshop: AssisttedModel {
         return Entities.Workshop(id: id, artist: nil, image: URL(string: coverImageUrl)!, title: title)
     }
 }
-//
-extension GetUserQuery.Data.GetUser: Model {
-    func generateEntity() -> Entities.User? {
-
-        var user = Entities.User(id: id, name: name)
-        user.workshops = workshops.compactMap {
-            guard let ws = $0 else {
-                return nil
-            }
-            return Entities.Workshop(id: ws.id, artist: user, image: URL(string: ws.coverImageUrl), title: ws.title)
-        }
-            
-        return user
-    }
-}

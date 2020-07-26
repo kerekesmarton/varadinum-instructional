@@ -19,7 +19,7 @@ enum UsersViewModel {
     case result([Entities.User])
 }
 
-class UsersData: ObservableObject, UsersObservable {
+class UsersListData: ObservableObject, UsersObservable {
     @Published var viewModel: UsersViewModel = .loading
     @Inject var api: Network
     
